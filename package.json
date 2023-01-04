@@ -1,0 +1,23 @@
+{
+  "name": "typescript-algorithm-and-data-structure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CokeBeliever/typescript-algorithm-and-data-structure.git"
+  },
+  "author": "CokeBeliever",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CokeBeliever/typescript-algorithm-and-data-structure/issues"
+  },
+  "homepage": "https://github.com/CokeBeliever/typescript-algorithm-and-data-structure#readme",
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.4"
+  }
+}

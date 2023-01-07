@@ -204,7 +204,7 @@ export default class LinkedList<Element>
     let currNode = this.head;
 
     while (currNode !== null) {
-      yield currNode.data;
+      yield currNode;
       currNode = currNode.next;
     }
   }

@@ -16,7 +16,8 @@ declare interface NodeInterface<Element> {
 /**
  * 链表接口
  */
-declare interface LinkedListInterface<Element> extends Iterable<Element> {
+declare interface LinkedListInterface<Element>
+  extends Iterable<NodeInterface<Element>> {
   /**
    * 在链表头部插入结点
    * @param el 数据元素

@@ -38,6 +38,20 @@ export default class LinkedList<Element>
     this.compare = new Comparator(comparatorFunction);
   }
 
+  /**
+   * 获取链表头部结点
+   */
+  public getHead(): Node<Element> | null {
+    return this.head;
+  }
+
+  /**
+   * 获取链表尾部结点
+   */
+  public getTail(): Node<Element> | null {
+    return this.tail;
+  }
+
   public insertHead(el: Element) {
     const node = new Node(el, this.head);
 

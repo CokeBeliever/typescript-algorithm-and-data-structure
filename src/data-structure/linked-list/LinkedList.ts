@@ -3,7 +3,7 @@ import Comparator from '@/utils/Comparator';
 /**
  * 结点
  */
-class Node<Element> implements NodeInterface<Element> {
+class Node<Element> implements LinkedListNodeInterface<Element> {
   public data: Element;
   public next: Node<Element> | null;
 

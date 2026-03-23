@@ -1,3 +1,7 @@
+import type {
+  LinkedListInterface,
+  LinkedListNodeInterface,
+} from '@/data-structure/types/linked-list';
 import Comparator from '@/utils/Comparator';
 
 /**

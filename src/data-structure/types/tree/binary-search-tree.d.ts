@@ -1,7 +1,10 @@
+import type { BinarySearchTreeNodeInterface } from '@/data-structure/types/tree/binary-search-tree-node';
+import type { BinaryTreeOrderCallbackType } from '@/data-structure/types/tree/binary-tree-node';
+
 /**
  * 二叉查找树接口
  */
-declare interface BinarySearchTreeInterface<Element>
+export interface BinarySearchTreeInterface<Element>
   extends Iterable<BinarySearchTreeNodeInterface<Element>> {
   /**
    * 插入数据元素
@@ -63,7 +66,7 @@ declare interface BinarySearchTreeInterface<Element>
 
   /**
    * 层序遍历
-   * @param cb
+   * @param cb 回调函数
    */
   levelOrder(
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>

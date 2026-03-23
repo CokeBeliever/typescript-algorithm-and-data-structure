@@ -1,4 +1,10 @@
 import { QueueByLinkedList } from '@/data-structure/queue';
+import type {
+  BinaryTreeNodeByBinaryLinkedListInterface,
+  BinaryTreeNodeByTridentLinkedListInterface,
+  BinaryTreeNodeInterface,
+  BinaryTreeOrderCallbackType,
+} from '@/data-structure/types/tree/binary-tree-node';
 
 /**
  * 二叉树结点 (二叉链表实现)

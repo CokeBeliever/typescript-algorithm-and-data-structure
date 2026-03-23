@@ -1,1 +1,5 @@
-export { default as LinkedList } from './LinkedList';
+export { default as LinkedList } from '@/data-structure/linked-list/LinkedList';
+export type {
+  LinkedListInterface,
+  LinkedListNodeInterface,
+} from '@/data-structure/types/linked-list';

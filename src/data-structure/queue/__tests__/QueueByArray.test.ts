@@ -1,4 +1,4 @@
-import QueueByArray from '../QueueByArray';
+import { QueueByArray } from '@/data-structure/queue';
 
 describe('Queue', () => {
   it('isEmpty(): 队列是否为空', () => {
@@ -87,3 +87,4 @@ describe('Queue', () => {
     expect(queueIterator.next().value).toBe(3);
   });
 });
+

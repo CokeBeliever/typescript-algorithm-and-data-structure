@@ -1,4 +1,4 @@
-import LinkedList from '../LinkedList';
+import { LinkedList } from '@/data-structure/linked-list';
 
 describe('LinkedList', () => {
   it('isEmpty(): 创建一个空的链表', () => {
@@ -158,3 +158,4 @@ describe('LinkedList', () => {
     expect(linkedList.toString()).toBe('1,2,3');
   });
 });
+

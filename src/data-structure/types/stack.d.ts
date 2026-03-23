@@ -1,7 +1,7 @@
 /**
  * 栈接口
  */
-declare interface StackInterface<Element> extends Iterable<Element> {
+export interface StackInterface<Element> extends Iterable<Element> {
   /**
    * 入栈
    */

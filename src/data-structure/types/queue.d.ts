@@ -1,7 +1,7 @@
 /**
  * 队列接口
  */
-declare interface QueueInterface<Element> extends Iterable<Element> {
+export interface QueueInterface<Element> extends Iterable<Element> {
   /**
    * 入队
    */

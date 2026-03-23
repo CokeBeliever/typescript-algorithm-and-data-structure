@@ -1,4 +1,4 @@
-import StackByLinkedList from '../StackByLinkedList';
+import { StackByLinkedList } from '@/data-structure/stack';
 
 describe('Stack', () => {
   it('isEmpty(): 创建一个空的栈', () => {
@@ -75,3 +75,4 @@ describe('Stack', () => {
     expect(stack.pop()!.value).toBe('test1');
   });
 });
+

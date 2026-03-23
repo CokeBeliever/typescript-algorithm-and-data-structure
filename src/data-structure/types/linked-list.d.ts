@@ -1,7 +1,7 @@
 /**
  * 结点接口
  */
-declare interface LinkedListNodeInterface<Element> {
+export interface LinkedListNodeInterface<Element> {
   /** 当前结点的数据 */
   data: Element;
   /** 后继结点的指针 */
@@ -16,7 +16,7 @@ declare interface LinkedListNodeInterface<Element> {
 /**
  * 链表接口
  */
-declare interface LinkedListInterface<Element>
+export interface LinkedListInterface<Element>
   extends Iterable<LinkedListNodeInterface<Element>> {
   /**
    * 在链表头部插入结点
@@ -35,7 +35,7 @@ declare interface LinkedListInterface<Element>
    * @param el 数据元素
    * @param index 指定位置索引
    */
-  insert(el, index): this;
+  insert(el: Element, index: number): this;
 
   /**
    * 在链表头部删除结点
@@ -51,7 +51,7 @@ declare interface LinkedListInterface<Element>
    * 在链表中删除指定数据元素的结点
    * @param el 数据元素
    */
-  delete(el: Element): LinkedListNodeInterface<Element>[] | null;
+  delete(el: Element): LinkedListNodeInterface<Element>[];
 
   /**
    * 在链表中查询指定数据元素的结点

@@ -2,10 +2,78 @@
   "name": "typescript-algorithm-and-data-structure",
   "version": "1.0.0",
   "description": "Data structures and basic algorithms implemented in TypeScript.",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./data-structure/types/*": {
+      "types": "./dist/data-structure/types/*.d.ts"
+    },
+    "./data-structure/linked-list": {
+      "types": "./dist/data-structure/linked-list/index.d.ts",
+      "require": "./dist/data-structure/linked-list/index.js",
+      "import": "./dist/data-structure/linked-list/index.mjs"
+    },
+    "./data-structure/linked-list/*": {
+      "types": "./dist/data-structure/linked-list/*.d.ts",
+      "require": "./dist/data-structure/linked-list/*.js",
+      "import": "./dist/data-structure/linked-list/*.mjs"
+    },
+    "./data-structure/queue": {
+      "types": "./dist/data-structure/queue/index.d.ts",
+      "require": "./dist/data-structure/queue/index.js",
+      "import": "./dist/data-structure/queue/index.mjs"
+    },
+    "./data-structure/queue/*": {
+      "types": "./dist/data-structure/queue/*.d.ts",
+      "require": "./dist/data-structure/queue/*.js",
+      "import": "./dist/data-structure/queue/*.mjs"
+    },
+    "./data-structure/stack": {
+      "types": "./dist/data-structure/stack/index.d.ts",
+      "require": "./dist/data-structure/stack/index.js",
+      "import": "./dist/data-structure/stack/index.mjs"
+    },
+    "./data-structure/stack/*": {
+      "types": "./dist/data-structure/stack/*.d.ts",
+      "require": "./dist/data-structure/stack/*.js",
+      "import": "./dist/data-structure/stack/*.mjs"
+    },
+    "./data-structure/tree": {
+      "types": "./dist/data-structure/tree/index.d.ts",
+      "require": "./dist/data-structure/tree/index.js",
+      "import": "./dist/data-structure/tree/index.mjs"
+    },
+    "./data-structure/tree/*": {
+      "types": "./dist/data-structure/tree/*.d.ts",
+      "require": "./dist/data-structure/tree/*.js",
+      "import": "./dist/data-structure/tree/*.mjs"
+    },
+    "./utils/Comparator": {
+      "types": "./dist/utils/Comparator.d.ts",
+      "require": "./dist/utils/Comparator.js",
+      "import": "./dist/utils/Comparator.mjs"
+    },
+    "./utils/*": {
+      "types": "./dist/utils/*.d.ts",
+      "require": "./dist/utils/*.js",
+      "import": "./dist/utils/*.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "test": "jest"
+    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && node scripts/copy-type-declarations.js",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -25,3 +93,4 @@
     "typescript": "^4.9.4"
   }
 }
+

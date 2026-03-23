@@ -1,3 +1,5 @@
+import type { StackInterface } from '@/data-structure/types/stack';
+
 /**
  * 栈 (数组实现)
  */

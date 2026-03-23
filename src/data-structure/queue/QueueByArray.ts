@@ -1,3 +1,5 @@
+import type { QueueInterface } from '@/data-structure/types/queue';
+
 /**
  * 队列 (数组实现)
  */

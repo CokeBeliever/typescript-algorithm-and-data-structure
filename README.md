@@ -25,6 +25,58 @@ Run tests:
 npm test
 ```
 
+Build publishable files:
+
+```bash
+npm run build
+```
+
+## Usage
+
+### ESM root import
+
+```ts
+import { BinarySearchTree, LinkedList } from 'typescript-algorithm-and-data-structure';
+
+const bst = new BinarySearchTree<number>();
+bst.insert(3);
+bst.insert(1);
+bst.insert(5);
+```
+
+### ESM subpath import
+
+```ts
+import { BinarySearchTree } from 'typescript-algorithm-and-data-structure/data-structure/tree';
+import { Comparator } from 'typescript-algorithm-and-data-structure/utils/Comparator';
+```
+
+### Fine-grained direct import
+
+```ts
+import BinarySearchTree from 'typescript-algorithm-and-data-structure/data-structure/tree/BinarySearchTree';
+import QueueByArray from 'typescript-algorithm-and-data-structure/data-structure/queue/QueueByArray';
+import Comparator from 'typescript-algorithm-and-data-structure/utils/Comparator';
+```
+
+### Type import
+
+```ts
+import type {
+  BinarySearchTreeInterface,
+  BinaryTreeOrderCallbackType,
+} from 'typescript-algorithm-and-data-structure/data-structure/tree';
+```
+
+### CommonJS require
+
+```js
+const {
+  BinarySearchTree,
+  LinkedList,
+} = require('typescript-algorithm-and-data-structure');
+```
+
 ## Source layout
 
 - `src/data-structure/linked-list`
@@ -33,9 +85,12 @@ npm test
 - `src/data-structure/tree`
 - `src/utils`
 
-## Entry points
+## Package output
 
-The repository now provides:
+The repository provides:
 
 - `src/index.ts` as the root source entry
-- `src/data-structure/tree/index.ts` for tree-related exports
+- `dist/index.js` as the CommonJS runtime entry after build
+- `dist/index.mjs` as the ESM runtime entry after build
+- `dist/index.d.ts` as the package type entry after build
+

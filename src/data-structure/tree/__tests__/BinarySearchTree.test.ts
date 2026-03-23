@@ -1,6 +1,6 @@
 import { BinarySearchTree as RootBinarySearchTree } from '@/index';
 import { BinarySearchTree as TreeModuleBinarySearchTree } from '@/data-structure/tree';
-import BinarySearchTree from '../BinarySearchTree';
+import BinarySearchTree from '@/data-structure/tree/BinarySearchTree';
 
 describe('BST', () => {
   it('exports: tree 模块和根入口导出 BinarySearchTree', () => {
@@ -268,4 +268,5 @@ describe('BST', () => {
     expect(iterator.next().done).toBeTruthy();
   });
 });
+
 

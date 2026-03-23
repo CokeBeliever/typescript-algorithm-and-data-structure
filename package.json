@@ -15,6 +15,26 @@
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
+    "./algorithm": {
+      "types": "./dist/algorithm/index.d.ts",
+      "require": "./dist/algorithm/index.js",
+      "import": "./dist/algorithm/index.mjs"
+    },
+    "./algorithm/*": {
+      "types": "./dist/algorithm/*.d.ts",
+      "require": "./dist/algorithm/*.js",
+      "import": "./dist/algorithm/*.mjs"
+    },
+    "./algorithm/breadth-first-search": {
+      "types": "./dist/algorithm/breadth-first-search/index.d.ts",
+      "require": "./dist/algorithm/breadth-first-search/index.js",
+      "import": "./dist/algorithm/breadth-first-search/index.mjs"
+    },
+    "./algorithm/breadth-first-search/*": {
+      "types": "./dist/algorithm/breadth-first-search/*.d.ts",
+      "require": "./dist/algorithm/breadth-first-search/*.js",
+      "import": "./dist/algorithm/breadth-first-search/*.mjs"
+    },
     "./data-structure/types/*": {
       "types": "./dist/data-structure/types/*.d.ts"
     },
@@ -27,6 +47,16 @@
       "types": "./dist/data-structure/linked-list/*.d.ts",
       "require": "./dist/data-structure/linked-list/*.js",
       "import": "./dist/data-structure/linked-list/*.mjs"
+    },
+    "./data-structure/graph": {
+      "types": "./dist/data-structure/graph/index.d.ts",
+      "require": "./dist/data-structure/graph/index.js",
+      "import": "./dist/data-structure/graph/index.mjs"
+    },
+    "./data-structure/graph/*": {
+      "types": "./dist/data-structure/graph/*.d.ts",
+      "require": "./dist/data-structure/graph/*.js",
+      "import": "./dist/data-structure/graph/*.mjs"
     },
     "./data-structure/queue": {
       "types": "./dist/data-structure/queue/index.d.ts",
@@ -93,4 +123,3 @@
     "typescript": "^4.9.4"
   }
 }
-

@@ -1,26 +1,24 @@
 # Repository Guidelines
 
 ## 项目结构与模块组织
-核心代码位于 `src/`。数据结构按功能划分在 `src/data-structure/` 下，例如 `linked-list/`、`queue/`、`stack/`、`tree/`。公共工具放在 `src/utils/`，公开的类型声明放在 `src/data-structure/types/`。测试与实现文件就近放置在各模块的 `__tests__/` 目录中，例如 `src/data-structure/queue/__tests__/QueueByArray.test.ts`。
+
+核心源码位于 `src/`。数据结构按领域划分在 `src/data-structure/linked-list`、`queue`、`stack` 和 `tree` 下；通用工具位于 `src/utils`，包入口使用各目录内的 `index.ts`。用于子路径导出的类型声明位于 `src/data-structure/types`。测试与实现代码就近放置在 `__tests__` 目录中，例如 `src/data-structure/queue/__tests__/QueueByArray.test.ts`。构建产物输出到 `dist/`。
 
 ## 构建、测试与开发命令
-请先执行 `npm install`；仓库依赖本地开发依赖来运行 Jest 和 TypeScript。
 
-- `npm test`：通过 `ts-jest` 运行全部 Jest 测试。
-- `npx jest src/data-structure/tree/__tests__/BinarySearchTree.test.ts`：迭代开发时运行单个测试文件。
-- `npx tsc --noEmit`：基于 `tsconfig.json` 执行严格的 TypeScript 类型检查。
+- `npm install`：安装 TypeScript、Jest、ts-jest 和 Prettier。
+- `npm test`：在 Node 环境下运行 Jest 测试，直接验证 TypeScript 源码。
+- `npm run build`：使用 `tsc` 构建 CommonJS 与 ESM 产物，然后复制声明文件到可发布目录。
+- `npm pack --dry-run`：发布前检查最终打包内容。
 
-当前仓库没有单独的构建产物配置，主要通过测试和类型检查完成验证。
+## 代码风格与命名约定
 
-## 代码风格与命名规范
-遵循 `.editorconfig`：使用 2 个空格缩进、UTF-8 编码、LF 换行，并移除行尾空白。Prettier 配置启用了 `singleQuote: true`；如果有大范围格式调整，先执行 `npx prettier --write .`。
-
-具体数据结构类及其文件名使用 PascalCase，例如 `LinkedList.ts`、`BinarySearchTreeNode.ts`。统一通过 `index.ts` 维护 barrel 导出。方法名应清晰表达语义，避免不必要缩写；共享接口与类型优先放在现有声明文件中，不要分散定义重复类型。
+遵循 `.editorconfig`：2 空格缩进、UTF-8 编码、LF 换行，并删除行尾空白。Prettier 使用单引号。保持 TypeScript 与严格模式兼容，内部导入优先使用现有的 `@/` 别名。实现文件和导出类使用 PascalCase 命名，例如 `BinarySearchTree.ts`、`QueueByLinkedList.ts`；目录入口文件统一为 `index.ts`。继续沿用每个数据结构一个小型聚焦模块的组织方式。
 
 ## 测试规范
-测试框架为 Jest，并由 `ts-jest` 处理 TypeScript 测试文件。新增测试应放在对应模块附近的 `__tests__/` 目录下，文件名使用 `*.test.ts`。新增数据结构或方法时，至少覆盖正常路径、边界情况和错误条件。
+
+测试框架为 Jest，配合 `ts-jest` 运行。新增测试时，放到最近的 `__tests__` 目录，并使用与目标类或模块对应的 `*.test.ts` 文件名，例如 `LinkedList.test.ts`。测试应覆盖正常流程、边界情况以及回归场景，尤其是插入、删除、遍历和空状态行为。提交 PR 前运行 `npm test`；如果修改了导出或声明文件，还应运行 `npm run build`。
 
 ## 提交与 Pull Request 规范
-最近的提交信息使用简短前缀，例如 `feat:`、`improvement:`、`del:`。请保持这一风格，并使用祈使句概述变更，例如 `feat: implement heap insert and remove`。
 
-Pull Request 应说明行为变化、列出受影响模块，并写明验证方式，例如 `npm test`、指定 Jest 文件或 `npx tsc --noEmit`。如有关联 issue 请附上链接。该仓库以代码为主，通常不需要截图。
+最近的提交标题采用简短约定式前缀，例如 `feat: ...`、`fix: ...`、`chore: ...`、`del: ...`。提交信息应使用祈使语气，并聚焦单一变更。PR 需要说明行为变化、列出受影响模块，并标明任何导出接口或类型层面的调整。若有关联 issue，请附上链接；同时在 PR 描述中写明测试结果，例如 `npm test` 和 `npm run build`。

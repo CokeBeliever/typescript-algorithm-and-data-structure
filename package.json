@@ -1,8 +1,9 @@
 {
   "name": "typescript-algorithm-and-data-structure",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Data structures and basic algorithms implemented in TypeScript.",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "scripts": {
     "test": "jest"
   },

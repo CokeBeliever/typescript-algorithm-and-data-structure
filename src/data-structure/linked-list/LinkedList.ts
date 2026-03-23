@@ -28,41 +28,41 @@ export default class LinkedList<Element>
   implements LinkedListInterface<Element>
 {
   /** 比较器 */
-  private compare: Comparator<Element>;
+  private _compare: Comparator<Element>;
   /** 链表头部结点 */
-  private head: Node<Element> | null = null;
+  private _head: Node<Element> | null = null;
   /** 链表尾部结点 */
-  private tail: Node<Element> | null = null;
+  private _tail: Node<Element> | null = null;
 
   /**
    * 构造函数
    * @param comparatorFunction 比较函数
    */
   constructor(comparatorFunction?: (a: Element, b: Element) => number) {
-    this.compare = new Comparator(comparatorFunction);
+    this._compare = new Comparator(comparatorFunction);
   }
 
   /**
    * 获取链表头部结点
    */
   public getHead(): Node<Element> | null {
-    return this.head;
+    return this._head;
   }
 
   /**
    * 获取链表尾部结点
    */
   public getTail(): Node<Element> | null {
-    return this.tail;
+    return this._tail;
   }
 
   public insertHead(el: Element) {
-    const node = new Node(el, this.head);
+    const node = new Node(el, this._head);
 
     if (this.isEmpty()) {
-      this.head = this.tail = node;
+      this._head = this._tail = node;
     } else {
-      this.head = node;
+      this._head = node;
     }
     return this;
   }
@@ -71,10 +71,10 @@ export default class LinkedList<Element>
     const node = new Node(el);
 
     if (this.isEmpty()) {
-      this.head = this.tail = node;
+      this._head = this._tail = node;
     } else {
-      this.tail!.next = node;
-      this.tail = node;
+      this._tail!.next = node;
+      this._tail = node;
     }
     return this;
   }
@@ -86,7 +86,7 @@ export default class LinkedList<Element>
       this.insertHead(el);
     } else {
       let count = 1;
-      let currNode = this.head;
+      let currNode = this._head;
 
       while (currNode) {
         if (count === index) break;
@@ -109,13 +109,13 @@ export default class LinkedList<Element>
   public deleteHead() {
     if (this.isEmpty()) return null;
 
-    const deletedNode = this.head as Node<Element>;
+    const deletedNode = this._head as Node<Element>;
 
     if (deletedNode.next) {
-      this.head = deletedNode.next;
+      this._head = deletedNode.next;
       deletedNode.next = null;
     } else {
-      this.head = this.tail = null;
+      this._head = this._tail = null;
     }
 
     return deletedNode;
@@ -124,22 +124,22 @@ export default class LinkedList<Element>
   public deleteTail() {
     if (this.isEmpty()) return null;
 
-    const deletedNode = this.tail as Node<Element>;
+    const deletedNode = this._tail as Node<Element>;
 
     // 链表只有一个结点的情况
-    if (this.head === this.tail) {
-      this.head = this.tail = null;
+    if (this._head === this._tail) {
+      this._head = this._tail = null;
       return deletedNode;
     }
 
     // 链表大于一个结点的情况
-    let currNode = this.head as Node<Element>;
+    let currNode = this._head as Node<Element>;
     while (currNode) {
       if (currNode.next === deletedNode) break;
       currNode = currNode.next as Node<Element>;
     }
     currNode.next = null;
-    this.tail = currNode;
+    this._tail = currNode;
 
     return deletedNode;
   }
@@ -148,14 +148,14 @@ export default class LinkedList<Element>
     const deletedNodeList: Node<Element>[] = [];
 
     let prevNode: Node<Element> | null = null;
-    let currNode: Node<Element> | null = this.head;
+    let currNode: Node<Element> | null = this._head;
     while (currNode) {
-      if (this.compare.equal(currNode.data, el)) {
-        if (currNode === this.head) {
+      if (this._compare.equal(currNode.data, el)) {
+        if (currNode === this._head) {
           deletedNodeList.push(this.deleteHead() as Node<Element>);
           prevNode = null;
-          currNode = this.head;
-        } else if (currNode === this.tail) {
+          currNode = this._head;
+        } else if (currNode === this._tail) {
           deletedNodeList.push(this.deleteTail() as Node<Element>);
           break;
         } else {
@@ -174,10 +174,10 @@ export default class LinkedList<Element>
   }
 
   public find(el: Element) {
-    let currNode = this.head;
+    let currNode = this._head;
 
     while (currNode) {
-      if (this.compare.equal(currNode.data, el)) return currNode;
+      if (this._compare.equal(currNode.data, el)) return currNode;
       currNode = currNode.next;
     }
 
@@ -186,7 +186,7 @@ export default class LinkedList<Element>
 
   public reverse() {
     let prevNode: Node<Element> | null = null;
-    let currNode = this.head;
+    let currNode = this._head;
     let nextNode: Node<Element> | null = null;
 
     while (currNode) {
@@ -196,15 +196,15 @@ export default class LinkedList<Element>
       currNode = nextNode;
     }
 
-    this.tail = this.head;
-    this.head = prevNode;
+    this._tail = this._head;
+    this._head = prevNode;
 
     return this;
   }
 
   public toString() {
     const ary: string[] = [];
-    let currNode = this.head;
+    let currNode = this._head;
 
     while (currNode) {
       ary.push(currNode.toString());
@@ -215,11 +215,11 @@ export default class LinkedList<Element>
   }
 
   public isEmpty() {
-    return this.head === null;
+    return this._head === null;
   }
 
   public *[Symbol.iterator]() {
-    let currNode = this.head;
+    let currNode = this._head;
 
     while (currNode !== null) {
       yield currNode;

@@ -10,18 +10,23 @@ import BinarySearchTreeNode from '@/data-structure/tree/BinarySearchTreeNode';
 export default class BinarySearchTree<Element>
   implements BinarySearchTreeInterface<Element>
 {
-  private compare: Comparator<Element>;
-  private root: BinarySearchTreeNode<Element> | null = null;
+  private _compare: Comparator<Element>;
+  private _root: BinarySearchTreeNode<Element> | null = null;
 
   constructor(comparatorFunction?: (a: Element, b: Element) => number) {
-    this.compare = new Comparator(comparatorFunction);
+    this._compare = new Comparator(comparatorFunction);
   }
 
   public insert(el: Element) {
     if (this.isEmpty()) {
-      this.root = new BinarySearchTreeNode(el, null, null, this.compare.compare);
+      this._root = new BinarySearchTreeNode(
+        el,
+        null,
+        null,
+        this._compare.compare
+      );
     } else {
-      this.root!.insert(el);
+      this._root!.insert(el);
     }
   }
 
@@ -30,27 +35,27 @@ export default class BinarySearchTree<Element>
       throw new Error('remove(): 二叉查找树是空树');
     }
 
-    if (!this.compare.equal(this.root!.data, el)) {
-      return this.root!.remove(el);
+    if (!this._compare.equal(this._root!.data, el)) {
+      return this._root!.remove(el);
     }
 
-    const deletedNode = this.root as BinarySearchTreeNode<Element>;
+    const deletedNode = this._root as BinarySearchTreeNode<Element>;
 
-    // root: 出度为 0
+    // _root: 出度为 0
     if (deletedNode.left === null && deletedNode.right === null) {
-      this.root = null;
+      this._root = null;
       return deletedNode;
     }
 
-    // root: 出度为 1
+    // _root: 出度为 1
     if (deletedNode.left === null || deletedNode.right === null) {
-      this.root = deletedNode.left || deletedNode.right;
+      this._root = deletedNode.left || deletedNode.right;
       deletedNode.left = null;
       deletedNode.right = null;
       return deletedNode;
     }
 
-    // root: 出度为 2
+    // _root: 出度为 2
     let replacementParent = deletedNode;
     let replacement = deletedNode.left as BinarySearchTreeNode<Element>;
 
@@ -65,7 +70,7 @@ export default class BinarySearchTree<Element>
     }
 
     replacement.right = deletedNode.right;
-    this.root = replacement;
+    this._root = replacement;
     deletedNode.left = null;
     deletedNode.right = null;
 
@@ -76,7 +81,7 @@ export default class BinarySearchTree<Element>
     if (this.isEmpty()) {
       return false;
     } else {
-      return this.root!.contains(el);
+      return this._root!.contains(el);
     }
   }
 
@@ -84,7 +89,7 @@ export default class BinarySearchTree<Element>
     if (this.isEmpty()) {
       return null;
     } else {
-      return this.root!.search(el);
+      return this._root!.search(el);
     }
   }
 
@@ -92,7 +97,7 @@ export default class BinarySearchTree<Element>
     if (this.isEmpty()) {
       return null;
     } else {
-      return this.root!.min();
+      return this._root!.min();
     }
   }
 
@@ -100,7 +105,7 @@ export default class BinarySearchTree<Element>
     if (this.isEmpty()) {
       return null;
     } else {
-      return this.root!.max();
+      return this._root!.max();
     }
   }
 
@@ -108,19 +113,19 @@ export default class BinarySearchTree<Element>
     if (this.isEmpty()) {
       return '';
     } else {
-      return this.root!.toString();
+      return this._root!.toString();
     }
   }
 
   public isEmpty() {
-    return this.root === null;
+    return this._root === null;
   }
 
   public preOrder(
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
   ) {
     if (!this.isEmpty()) {
-      this.root!.preOrder(cb);
+      this._root!.preOrder(cb);
     }
   }
 
@@ -128,7 +133,7 @@ export default class BinarySearchTree<Element>
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
   ) {
     if (!this.isEmpty()) {
-      this.root!.inOrder(cb);
+      this._root!.inOrder(cb);
     }
   }
 
@@ -136,7 +141,7 @@ export default class BinarySearchTree<Element>
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
   ) {
     if (!this.isEmpty()) {
-      this.root!.postOrder(cb);
+      this._root!.postOrder(cb);
     }
   }
 
@@ -144,7 +149,7 @@ export default class BinarySearchTree<Element>
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
   ) {
     if (!this.isEmpty()) {
-      this.root!.levelOrder(cb);
+      this._root!.levelOrder(cb);
     }
   }
 
@@ -157,7 +162,7 @@ export default class BinarySearchTree<Element>
       };
       return iterator;
     } else {
-      return this.root![Symbol.iterator]();
+      return this._root![Symbol.iterator]();
     }
   }
 }

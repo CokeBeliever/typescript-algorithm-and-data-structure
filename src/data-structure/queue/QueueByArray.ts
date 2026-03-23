@@ -5,31 +5,31 @@ import type { QueueInterface } from '@/data-structure/types/queue';
  */
 export default class QueueByArray<Element> implements QueueInterface<Element> {
   /** 元素容器 */
-  private container: Element[] = [];
+  private _container: Element[] = [];
 
   public enqueue(el: Element) {
-    this.container.push(el);
+    this._container.push(el);
   }
 
   public dequeue() {
     if (this.isEmpty()) return null;
-    return this.container.shift() as Element;
+    return this._container.shift() as Element;
   }
 
   public peek() {
     if (this.isEmpty()) return null;
-    return this.container[0];
+    return this._container[0];
   }
 
   public toString() {
-    return this.container.toString();
+    return this._container.toString();
   }
 
   public isEmpty() {
-    return this.container.length === 0;
+    return this._container.length === 0;
   }
 
   public [Symbol.iterator]() {
-    return this.container[Symbol.iterator]();
+    return this._container[Symbol.iterator]();
   }
 }

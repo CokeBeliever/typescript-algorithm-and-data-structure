@@ -1,6 +1,13 @@
+import { BinarySearchTree as RootBinarySearchTree } from '@/index';
+import { BinarySearchTree as TreeModuleBinarySearchTree } from '@/data-structure/tree';
 import BinarySearchTree from '../BinarySearchTree';
 
 describe('BST', () => {
+  it('exports: tree 模块和根入口导出 BinarySearchTree', () => {
+    expect(TreeModuleBinarySearchTree).toBe(BinarySearchTree);
+    expect(RootBinarySearchTree).toBe(BinarySearchTree);
+  });
+
   it('isEmpty(): 二叉查找树是否为空', () => {
     const bst = new BinarySearchTree<number>();
 
@@ -54,6 +61,49 @@ describe('BST', () => {
     expect(bst.remove(6)!.data).toBe(6);
     expect(bst.remove(1)!.data).toBe(1);
     expect(bst.toString()).toBe('4,2,3,5,7');
+  });
+
+  it('remove(): 删除有两个子结点的根结点', () => {
+    const bst = new BinarySearchTree<number>();
+
+    bst.insert(4);
+    bst.insert(2);
+    bst.insert(3);
+    bst.insert(1);
+    bst.insert(6);
+    bst.insert(7);
+    bst.insert(5);
+
+    expect(bst.remove(4)!.data).toBe(4);
+    expect(bst.toString()).toBe('3,2,1,6,5,7');
+    expect(bst.contains(4)).toBeFalsy();
+
+    const inOrderList: number[] = [];
+    bst.inOrder((node) => inOrderList.push(node.data));
+    expect(inOrderList.join(',')).toBe('1,2,3,5,6,7');
+  });
+
+  it('contains(): 自定义比较器可用于对象元素', () => {
+    type Item = { key: number; label: string };
+
+    const rootItem = { key: 2, label: 'root' };
+    const leftItem = { key: 1, label: 'left' };
+    const rightItem = { key: 3, label: 'right' };
+    const bst = new BinarySearchTree<Item>((a, b) => a.key - b.key);
+
+    bst.insert(rootItem);
+    bst.insert(leftItem);
+    bst.insert(rightItem);
+
+    expect(bst.contains({ key: 1, label: 'ignored' })).toBeTruthy();
+    expect(bst.search({ key: 3, label: 'ignored' })!.data).toBe(rightItem);
+    expect(bst.remove({ key: 2, label: 'ignored' })!.data).toBe(rootItem);
+
+    const inOrderKeys: number[] = [];
+    bst.inOrder((node) => inOrderKeys.push(node.data.key));
+
+    expect(inOrderKeys.join(',')).toBe('1,3');
+    expect(bst.contains({ key: 2, label: 'ignored' })).toBeFalsy();
   });
 
   it('contains(): 是否包含数据元素', () => {
@@ -218,3 +268,4 @@ describe('BST', () => {
     expect(iterator.next().done).toBeTruthy();
   });
 });
+

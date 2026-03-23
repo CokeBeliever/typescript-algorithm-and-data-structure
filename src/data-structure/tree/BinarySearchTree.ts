@@ -1,3 +1,4 @@
+import Comparator from '@/utils/Comparator';
 import BinarySearchTreeNode from './BinarySearchTreeNode';
 
 /**
@@ -6,11 +7,16 @@ import BinarySearchTreeNode from './BinarySearchTreeNode';
 export default class BinarySearchTree<Element>
   implements BinarySearchTreeInterface<Element>
 {
+  private compare: Comparator<Element>;
   private root: BinarySearchTreeNode<Element> | null = null;
+
+  constructor(comparatorFunction?: (a: Element, b: Element) => number) {
+    this.compare = new Comparator(comparatorFunction);
+  }
 
   public insert(el: Element) {
     if (this.isEmpty()) {
-      this.root = new BinarySearchTreeNode(el);
+      this.root = new BinarySearchTreeNode(el, null, null, this.compare.compare);
     } else {
       this.root!.insert(el);
     }
@@ -19,30 +25,48 @@ export default class BinarySearchTree<Element>
   public remove(el: Element) {
     if (this.isEmpty()) {
       throw new Error('remove(): 二叉查找树是空树');
-    } else {
-      const targetNode = this.root!.remove(el);
-
-      if (targetNode === this.root) {
-        // root: 出度为 0
-        if (this.root!.left === null && this.root!.right === null) {
-          this.root = null;
-        }
-        // root: 出度为 1
-        else if (this.root!.left === null || this.root!.right === null) {
-          this.root = this.root!.left || this.root!.right;
-        }
-        // root: 出度为 2
-        else {
-          const leftMaxLeafNode = this.root!.left.max();
-          this.remove(leftMaxLeafNode.data);
-          this.root = leftMaxLeafNode;
-          this.root.left = targetNode!.left;
-          this.root.right = targetNode!.right;
-        }
-      }
-
-      return targetNode;
     }
+
+    if (!this.compare.equal(this.root!.data, el)) {
+      return this.root!.remove(el);
+    }
+
+    const deletedNode = this.root as BinarySearchTreeNode<Element>;
+
+    // root: 出度为 0
+    if (deletedNode.left === null && deletedNode.right === null) {
+      this.root = null;
+      return deletedNode;
+    }
+
+    // root: 出度为 1
+    if (deletedNode.left === null || deletedNode.right === null) {
+      this.root = deletedNode.left || deletedNode.right;
+      deletedNode.left = null;
+      deletedNode.right = null;
+      return deletedNode;
+    }
+
+    // root: 出度为 2
+    let replacementParent = deletedNode;
+    let replacement = deletedNode.left as BinarySearchTreeNode<Element>;
+
+    while (replacement.right) {
+      replacementParent = replacement;
+      replacement = replacement.right;
+    }
+
+    if (replacementParent !== deletedNode) {
+      replacementParent.right = replacement.left;
+      replacement.left = deletedNode.left;
+    }
+
+    replacement.right = deletedNode.right;
+    this.root = replacement;
+    deletedNode.left = null;
+    deletedNode.right = null;
+
+    return deletedNode;
   }
 
   public contains(el: Element) {

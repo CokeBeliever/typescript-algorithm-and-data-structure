@@ -34,13 +34,23 @@ export default class BinarySearchTreeNode<Element>
       } else if (this.compare.lessThan(el, currNode.data)) {
         if (currNode.left) currNode = currNode.left;
         else {
-          currNode.left = new BinarySearchTreeNode(el);
+          currNode.left = new BinarySearchTreeNode(
+            el,
+            null,
+            null,
+            currNode.compare.compare
+          );
           break;
         }
       } else {
         if (currNode.right) currNode = currNode.right;
         else {
-          currNode.right = new BinarySearchTreeNode(el);
+          currNode.right = new BinarySearchTreeNode(
+            el,
+            null,
+            null,
+            currNode.compare.compare
+          );
           break;
         }
       }

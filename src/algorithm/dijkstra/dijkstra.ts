@@ -89,7 +89,9 @@ function assertGraphHasNoNegativeWeightEdge<Element>(
   for (const vertex of graph) {
     for (const edge of graph.getNeighbors(vertex)) {
       if (edge.weight < 0) {
-        throw new Error('Dijkstra: 图中存在负权边，不能使用 Dijkstra 算法');
+        throw new Error(
+          'dijkstra: 图中存在负权边，不能使用 dijkstra 算法'
+        );
       }
     }
   }

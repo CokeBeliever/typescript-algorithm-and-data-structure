@@ -48,16 +48,6 @@
     "./data-structure/types/*": {
       "types": "./dist/data-structure/types/*.d.ts"
     },
-    "./data-structure/linked-list": {
-      "types": "./dist/data-structure/linked-list/index.d.ts",
-      "require": "./dist/data-structure/linked-list/index.js",
-      "import": "./dist/data-structure/linked-list/index.mjs"
-    },
-    "./data-structure/linked-list/*": {
-      "types": "./dist/data-structure/linked-list/*.d.ts",
-      "require": "./dist/data-structure/linked-list/*.js",
-      "import": "./dist/data-structure/linked-list/*.mjs"
-    },
     "./data-structure/graph": {
       "types": "./dist/data-structure/graph/index.d.ts",
       "require": "./dist/data-structure/graph/index.js",
@@ -67,6 +57,26 @@
       "types": "./dist/data-structure/graph/*.d.ts",
       "require": "./dist/data-structure/graph/*.js",
       "import": "./dist/data-structure/graph/*.mjs"
+    },
+    "./data-structure/heap": {
+      "types": "./dist/data-structure/heap/index.d.ts",
+      "require": "./dist/data-structure/heap/index.js",
+      "import": "./dist/data-structure/heap/index.mjs"
+    },
+    "./data-structure/heap/*": {
+      "types": "./dist/data-structure/heap/*.d.ts",
+      "require": "./dist/data-structure/heap/*.js",
+      "import": "./dist/data-structure/heap/*.mjs"
+    },
+    "./data-structure/linked-list": {
+      "types": "./dist/data-structure/linked-list/index.d.ts",
+      "require": "./dist/data-structure/linked-list/index.js",
+      "import": "./dist/data-structure/linked-list/index.mjs"
+    },
+    "./data-structure/linked-list/*": {
+      "types": "./dist/data-structure/linked-list/*.d.ts",
+      "require": "./dist/data-structure/linked-list/*.js",
+      "import": "./dist/data-structure/linked-list/*.mjs"
     },
     "./data-structure/queue": {
       "types": "./dist/data-structure/queue/index.d.ts",

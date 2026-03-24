@@ -10,7 +10,7 @@ export default class BinarySearchTreeNode<Element>
   implements BinarySearchTreeNodeInterface<Element>
 {
   /** 比较器 */
-  private _compare: Comparator<Element>;
+  private _comparator: Comparator<Element>;
 
   /**
    * 构造函数
@@ -23,23 +23,23 @@ export default class BinarySearchTreeNode<Element>
     comparatorFunction?: (a: Element, b: Element) => number
   ) {
     super(data, left, right);
-    this._compare = new Comparator(comparatorFunction);
+    this._comparator = new Comparator(comparatorFunction);
   }
 
   public insert(el: Element) {
     let currNode: BinarySearchTreeNode<Element> = this;
 
     while (true) {
-      if (this._compare.equal(el, currNode.data)) {
+      if (this._comparator.equal(el, currNode.data)) {
         throw new Error('insert(): el 参数的值在树中已存在');
-      } else if (this._compare.lessThan(el, currNode.data)) {
+      } else if (this._comparator.lessThan(el, currNode.data)) {
         if (currNode.left) currNode = currNode.left;
         else {
           currNode.left = new BinarySearchTreeNode(
             el,
             null,
             null,
-            currNode._compare.compare
+            currNode._comparator.compare
           );
           break;
         }
@@ -50,7 +50,7 @@ export default class BinarySearchTreeNode<Element>
             el,
             null,
             null,
-            currNode._compare.compare
+            currNode._comparator.compare
           );
           break;
         }
@@ -63,7 +63,7 @@ export default class BinarySearchTreeNode<Element>
     let currNode: BinarySearchTreeNode<Element> | null = this;
 
     while (currNode) {
-      if (this._compare.equal(el, currNode.data)) {
+      if (this._comparator.equal(el, currNode.data)) {
         // currNode: 出度为 0 的结点 (叶子结点)
         if (currNode.left === null && currNode.right === null) {
           // currNode: 根节点
@@ -103,7 +103,7 @@ export default class BinarySearchTreeNode<Element>
             return currNode;
           }
         }
-      } else if (this._compare.lessThan(el, currNode.data)) {
+      } else if (this._comparator.lessThan(el, currNode.data)) {
         parentNode = currNode;
         currNode = currNode.left;
       } else {
@@ -118,8 +118,9 @@ export default class BinarySearchTreeNode<Element>
   public contains(el: Element) {
     let currNode: BinarySearchTreeNode<Element> | null = this;
 
-    while (currNode && !this._compare.equal(el, currNode.data)) {
-      if (this._compare.lessThan(el, currNode.data)) currNode = currNode.left;
+    while (currNode && !this._comparator.equal(el, currNode.data)) {
+      if (this._comparator.lessThan(el, currNode.data))
+        currNode = currNode.left;
       else currNode = currNode.right;
     }
 
@@ -129,8 +130,9 @@ export default class BinarySearchTreeNode<Element>
   public search(el: Element) {
     let currNode: BinarySearchTreeNode<Element> | null = this;
 
-    while (currNode && !this._compare.equal(el, currNode.data)) {
-      if (this._compare.lessThan(el, currNode.data)) currNode = currNode.left;
+    while (currNode && !this._comparator.equal(el, currNode.data)) {
+      if (this._comparator.lessThan(el, currNode.data))
+        currNode = currNode.left;
       else currNode = currNode.right;
     }
 

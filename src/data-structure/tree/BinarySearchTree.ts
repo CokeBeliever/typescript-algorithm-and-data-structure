@@ -10,11 +10,11 @@ import BinarySearchTreeNode from '@/data-structure/tree/BinarySearchTreeNode';
 export default class BinarySearchTree<Element>
   implements BinarySearchTreeInterface<Element>
 {
-  private _compare: Comparator<Element>;
+  private _comparator: Comparator<Element>;
   private _root: BinarySearchTreeNode<Element> | null = null;
 
   constructor(comparatorFunction?: (a: Element, b: Element) => number) {
-    this._compare = new Comparator(comparatorFunction);
+    this._comparator = new Comparator(comparatorFunction);
   }
 
   public insert(el: Element) {
@@ -23,7 +23,7 @@ export default class BinarySearchTree<Element>
         el,
         null,
         null,
-        this._compare.compare
+        this._comparator.compare
       );
     } else {
       this._root!.insert(el);
@@ -35,7 +35,7 @@ export default class BinarySearchTree<Element>
       throw new Error('remove(): 二叉查找树是空树');
     }
 
-    if (!this._compare.equal(this._root!.data, el)) {
+    if (!this._comparator.equal(this._root!.data, el)) {
       return this._root!.remove(el);
     }
 

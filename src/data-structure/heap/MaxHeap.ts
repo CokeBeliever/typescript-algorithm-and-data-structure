@@ -8,6 +8,6 @@ export default class MaxHeap<Element> extends Heap<Element> {
     firstElement: Element,
     secondElement: Element
   ) {
-    return this._compare.greaterThanOrEqual(firstElement, secondElement);
+    return this._comparator.greaterThanOrEqual(firstElement, secondElement);
   }
 }

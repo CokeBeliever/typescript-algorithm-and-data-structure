@@ -8,6 +8,6 @@ export default class MinHeap<Element> extends Heap<Element> {
     firstElement: Element,
     secondElement: Element
   ) {
-    return this._compare.lessThanOrEqual(firstElement, secondElement);
+    return this._comparator.lessThanOrEqual(firstElement, secondElement);
   }
 }

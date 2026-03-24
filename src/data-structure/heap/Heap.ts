@@ -9,10 +9,10 @@ export default abstract class Heap<Element> implements HeapInterface<Element> {
   protected _container: Element[] = [];
 
   /** 比较器 */
-  protected _compare: Comparator<Element>;
+  protected _comparator: Comparator<Element>;
 
   constructor(comparatorFunction?: (a: Element, b: Element) => number) {
-    this._compare = new Comparator(comparatorFunction);
+    this._comparator = new Comparator(comparatorFunction);
   }
 
   public add(el: Element) {
@@ -81,7 +81,7 @@ export default abstract class Heap<Element> implements HeapInterface<Element> {
     comparatorFunction?: (a: Element, b: Element) => number
   ) {
     const comparator = new Comparator(
-      comparatorFunction || this._compare.compare
+      comparatorFunction || this._comparator.compare
     );
     const foundItemIndices: number[] = [];
 

@@ -28,7 +28,7 @@ export default class LinkedList<Element>
   implements LinkedListInterface<Element>
 {
   /** 比较器 */
-  private _compare: Comparator<Element>;
+  private _comparator: Comparator<Element>;
   /** 链表头部结点 */
   private _head: Node<Element> | null = null;
   /** 链表尾部结点 */
@@ -39,7 +39,7 @@ export default class LinkedList<Element>
    * @param comparatorFunction 比较函数
    */
   constructor(comparatorFunction?: (a: Element, b: Element) => number) {
-    this._compare = new Comparator(comparatorFunction);
+    this._comparator = new Comparator(comparatorFunction);
   }
 
   /**
@@ -150,7 +150,7 @@ export default class LinkedList<Element>
     let prevNode: Node<Element> | null = null;
     let currNode: Node<Element> | null = this._head;
     while (currNode) {
-      if (this._compare.equal(currNode.data, el)) {
+      if (this._comparator.equal(currNode.data, el)) {
         if (currNode === this._head) {
           deletedNodeList.push(this.deleteHead() as Node<Element>);
           prevNode = null;
@@ -177,7 +177,7 @@ export default class LinkedList<Element>
     let currNode = this._head;
 
     while (currNode) {
-      if (this._compare.equal(currNode.data, el)) return currNode;
+      if (this._comparator.equal(currNode.data, el)) return currNode;
       currNode = currNode.next;
     }
 

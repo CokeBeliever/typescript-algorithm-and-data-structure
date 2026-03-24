@@ -55,6 +55,16 @@
       "require": "./dist/algorithm/dijkstra/*.js",
       "import": "./dist/algorithm/dijkstra/*.mjs"
     },
+    "./algorithm/greedy-best-first-search": {
+      "types": "./dist/algorithm/greedy-best-first-search/index.d.ts",
+      "require": "./dist/algorithm/greedy-best-first-search/index.js",
+      "import": "./dist/algorithm/greedy-best-first-search/index.mjs"
+    },
+    "./algorithm/greedy-best-first-search/*": {
+      "types": "./dist/algorithm/greedy-best-first-search/*.d.ts",
+      "require": "./dist/algorithm/greedy-best-first-search/*.js",
+      "import": "./dist/algorithm/greedy-best-first-search/*.mjs"
+    },
     "./data-structure/types/*": {
       "types": "./dist/data-structure/types/*.d.ts"
     },

@@ -3,7 +3,7 @@ import type { DijkstraResultInterface } from '@/algorithm/dijkstra/dijkstra';
 /**
  * 根据 Dijkstra 结果还原目标顶点的最短路径
  */
-export default function getPathFromDijkstraResult<Element>(
+export default function <Element>(
   result: DijkstraResultInterface<Element>,
   target: Element
 ) {

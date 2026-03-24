@@ -45,6 +45,16 @@
       "require": "./dist/algorithm/depth-first-search/*.js",
       "import": "./dist/algorithm/depth-first-search/*.mjs"
     },
+    "./algorithm/a-star": {
+      "types": "./dist/algorithm/a-star/index.d.ts",
+      "require": "./dist/algorithm/a-star/index.js",
+      "import": "./dist/algorithm/a-star/index.mjs"
+    },
+    "./algorithm/a-star/*": {
+      "types": "./dist/algorithm/a-star/*.d.ts",
+      "require": "./dist/algorithm/a-star/*.js",
+      "import": "./dist/algorithm/a-star/*.mjs"
+    },
     "./algorithm/dijkstra": {
       "types": "./dist/algorithm/dijkstra/index.d.ts",
       "require": "./dist/algorithm/dijkstra/index.js",

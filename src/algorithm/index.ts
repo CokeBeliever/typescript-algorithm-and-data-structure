@@ -1,3 +1,4 @@
+export * from '@/algorithm/a-star';
 export * from '@/algorithm/breadth-first-search';
 export * from '@/algorithm/depth-first-search';
 export * from '@/algorithm/dijkstra';

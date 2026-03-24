@@ -8,6 +8,8 @@ TypeScript 实现的基础数据结构与经典算法练习仓库，提供根入
 
 | 名称 | 类型 | 简介 | 前置基础 | 适用场景 |
 | --- | --- | --- | --- | --- |
+| `aStar` | 最短路径 | 用启发函数引导搜索方向，在非负权图中寻找起点到目标点的最短路径。 | 加权图、优先队列、Dijkstra、启发函数 | 地图寻路、游戏寻路、单目标路径规划 |
+| `getPathFromAStarResult` | 路径还原 | 根据 `aStar` 的前驱表还原从起点到目标点的路径。 | 数组或列表、前驱节点概念、A* 结果结构 | 展示路径结果、输出具体节点序列 |
 | `breadthFirstSearchByGraph` | 图遍历 | 按层逐步访问图中的顶点。 | 队列、图的邻接关系、已访问集合 | 无权图最短路径、层级扩散、连通性搜索 |
 | `breadthFirstSearchByTree` | 树遍历 | 按层访问树节点，也常被称为层序遍历。 | 队列、二叉树或普通树结构 | 层级展示、逐层统计、最短层级问题 |
 | `depthFirstSearchByGraphRecursive` | 图遍历 | 用递归方式沿路径尽可能深入，再回溯继续搜索。 | 递归、调用栈、图的邻接关系、已访问集合 | 路径搜索、连通分量、拓扑相关的遍历基础 |
@@ -59,6 +61,8 @@ import {
   BinarySearchTree,
   LinkedList,
   WeightedGraph,
+  aStar,
+  getPathFromAStarResult,
   dijkstra,
   getPathFromDijkstraResult,
 } from 'typescript-algorithm-and-data-structure';
@@ -71,6 +75,18 @@ graph
   .addEdge('C', 'B', 1)
   .addEdge('B', 'D', 5);
 
+const aStarResult = aStar(graph, 'A', 'D', (current) => {
+  const heuristicMap = new Map([
+    ['A', 5],
+    ['B', 2],
+    ['C', 3],
+    ['D', 0],
+  ]);
+
+  return heuristicMap.get(current) ?? 0;
+});
+const aStarPath = getPathFromAStarResult(aStarResult);
+
 const result = dijkstra(graph, 'A');
 const path = getPathFromDijkstraResult(result, 'D');
 ```
@@ -78,6 +94,7 @@ const path = getPathFromDijkstraResult(result, 'D');
 ### 子路径导入
 
 ```ts
+import { aStar, getPathFromAStarResult } from 'typescript-algorithm-and-data-structure/algorithm/a-star';
 import { dijkstra, getPathFromDijkstraResult } from 'typescript-algorithm-and-data-structure/algorithm/dijkstra';
 import { BinarySearchTree } from 'typescript-algorithm-and-data-structure/data-structure/tree';
 import { QueueByArray } from 'typescript-algorithm-and-data-structure/data-structure/queue';
@@ -87,6 +104,7 @@ import { QueueByArray } from 'typescript-algorithm-and-data-structure/data-struc
 
 ```ts
 import BinarySearchTree from 'typescript-algorithm-and-data-structure/data-structure/tree/BinarySearchTree';
+import aStar from 'typescript-algorithm-and-data-structure/algorithm/a-star/a-star';
 import dijkstra from 'typescript-algorithm-and-data-structure/algorithm/dijkstra/dijkstra';
 import Comparator from 'typescript-algorithm-and-data-structure/utils/Comparator';
 ```

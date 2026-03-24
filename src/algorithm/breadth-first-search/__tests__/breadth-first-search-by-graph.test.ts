@@ -1,14 +1,14 @@
 import {
-  BreadthFirstSearchByGraph as RootBreadthFirstSearchByGraph,
+  breadthFirstSearchByGraph as rootBreadthFirstSearchByGraph,
   Graph,
 } from '@/index';
-import { BreadthFirstSearchByGraph as BfsModuleBreadthFirstSearchByGraph } from '@/algorithm/breadth-first-search';
-import BreadthFirstSearchByGraph from '@/algorithm/breadth-first-search/BreadthFirstSearchByGraph';
+import { breadthFirstSearchByGraph as moduleBreadthFirstSearchByGraph } from '@/algorithm/breadth-first-search';
+import breadthFirstSearchByGraph from '@/algorithm/breadth-first-search/breadth-first-search-by-graph';
 
-describe('BreadthFirstSearchByGraph', () => {
-  it('exports: breadth-first-search 模块和根入口导出 BreadthFirstSearchByGraph', () => {
-    expect(BfsModuleBreadthFirstSearchByGraph).toBe(BreadthFirstSearchByGraph);
-    expect(RootBreadthFirstSearchByGraph).toBe(BreadthFirstSearchByGraph);
+describe('breadthFirstSearchByGraph', () => {
+  it('exports: breadth-first-search 模块和根入口导出 breadthFirstSearchByGraph', () => {
+    expect(moduleBreadthFirstSearchByGraph).toBe(breadthFirstSearchByGraph);
+    expect(rootBreadthFirstSearchByGraph).toBe(breadthFirstSearchByGraph);
   });
 
   it('广度优先遍历图', () => {
@@ -23,7 +23,7 @@ describe('BreadthFirstSearchByGraph', () => {
       .addEdge('E', 'F');
 
     const traversedByCallback: string[] = [];
-    const traversedOrder = BreadthFirstSearchByGraph(graph, 'A', (vertex) =>
+    const traversedOrder = breadthFirstSearchByGraph(graph, 'A', (vertex) =>
       traversedByCallback.push(vertex)
     );
 
@@ -40,7 +40,7 @@ describe('BreadthFirstSearchByGraph', () => {
       .addEdge('C', 'D')
       .addEdge('D', 'A');
 
-    expect(BreadthFirstSearchByGraph(graph, 'A').join(',')).toBe('A,B,D,C');
+    expect(breadthFirstSearchByGraph(graph, 'A').join(',')).toBe('A,B,D,C');
   });
 
   it('起点不存在时返回空数组', () => {
@@ -50,7 +50,7 @@ describe('BreadthFirstSearchByGraph', () => {
     graph.addEdge('A', 'B');
 
     expect(
-      BreadthFirstSearchByGraph(graph, 'Z', (vertex) =>
+      breadthFirstSearchByGraph(graph, 'Z', (vertex) =>
         traversedByCallback.push(vertex)
       )
     ).toEqual([]);

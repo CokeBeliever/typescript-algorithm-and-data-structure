@@ -7,13 +7,10 @@ import type {
 /**
  * 二叉树的深度优先搜索 (迭代)
  */
-export default function DepthFirstSearchByTreeIterative<
+export default function <
   Node extends BinaryTreeNodeInterface<Node, Element>,
   Element
->(
-  root: Node | null,
-  cb?: BinaryTreeOrderCallbackType<Node>
-) {
+>(root: Node | null, cb?: BinaryTreeOrderCallbackType<Node>) {
   if (root === null) {
     return [];
   }

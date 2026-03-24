@@ -1,2 +1,2 @@
-export { default as BreadthFirstSearchByGraph } from '@/algorithm/breadth-first-search/BreadthFirstSearchByGraph';
-export { default as BreadthFirstSearchByTree } from '@/algorithm/breadth-first-search/BreadthFirstSearchByTree';
+export { default as breadthFirstSearchByGraph } from '@/algorithm/breadth-first-search/breadth-first-search-by-graph';
+export { default as breadthFirstSearchByTree } from '@/algorithm/breadth-first-search/breadth-first-search-by-tree';

@@ -1,13 +1,13 @@
-import { QueueByLinkedList } from '@/data-structure/queue';
+import { StackByArray } from '@/data-structure/stack';
 import type {
   GraphInterface,
   GraphTraverseCallbackType,
 } from '@/data-structure/types/graph';
 
 /**
- * 图的广度优先搜索
+ * 图的深度优先搜索 (迭代)
  */
-export default function BreadthFirstSearchByGraph<Element>(
+export default function <Element>(
   graph: GraphInterface<Element>,
   start: Element,
   cb?: GraphTraverseCallbackType<Element>
@@ -17,26 +17,28 @@ export default function BreadthFirstSearchByGraph<Element>(
   }
 
   const visited = new Set<Element>([start]);
-  const queue = new QueueByLinkedList<Element>();
+  const stack = new StackByArray<Element>();
   const traversedOrder: Element[] = [];
 
-  queue.enqueue(start);
+  stack.push(start);
 
-  while (!queue.isEmpty()) {
-    const vertex = queue.dequeue() as Element;
+  while (!stack.isEmpty()) {
+    const vertex = stack.pop() as Element;
     traversedOrder.push(vertex);
 
     if (cb) {
       cb(vertex);
     }
 
-    for (const neighbor of graph.getNeighbors(vertex)) {
+    const neighbors = graph.getNeighbors(vertex).slice().reverse();
+
+    for (const neighbor of neighbors) {
       if (visited.has(neighbor)) {
         continue;
       }
 
       visited.add(neighbor);
-      queue.enqueue(neighbor);
+      stack.push(neighbor);
     }
   }
 

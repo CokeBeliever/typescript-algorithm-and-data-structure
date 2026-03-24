@@ -1,30 +1,22 @@
-import { QueueByLinkedList } from '@/data-structure/queue';
 import type {
   BinaryTreeNodeInterface,
   BinaryTreeOrderCallbackType,
 } from '@/data-structure/types/tree/binary-tree-node';
 
 /**
- * 二叉树的广度优先搜索
+ * 二叉树的深度优先搜索 (递归)
  */
-export default function BreadthFirstSearchByTree<
+export default function <
   Node extends BinaryTreeNodeInterface<Node, Element>,
   Element
->(
-  root: Node | null,
-  cb?: BinaryTreeOrderCallbackType<Node>
-) {
+>(root: Node | null, cb?: BinaryTreeOrderCallbackType<Node>) {
   if (root === null) {
     return [];
   }
 
-  const queue = new QueueByLinkedList<Node>();
   const traversedOrder: Node[] = [];
 
-  queue.enqueue(root);
-
-  while (!queue.isEmpty()) {
-    const node = queue.dequeue() as Node;
+  function traverse(node: Node) {
     traversedOrder.push(node);
 
     if (cb) {
@@ -32,13 +24,15 @@ export default function BreadthFirstSearchByTree<
     }
 
     if (node.left) {
-      queue.enqueue(node.left);
+      traverse(node.left);
     }
 
     if (node.right) {
-      queue.enqueue(node.right);
+      traverse(node.right);
     }
   }
+
+  traverse(root);
 
   return traversedOrder;
 }

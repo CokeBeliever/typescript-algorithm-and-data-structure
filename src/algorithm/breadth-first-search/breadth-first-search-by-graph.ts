@@ -1,12 +1,13 @@
+import { QueueByLinkedList } from '@/data-structure/queue';
 import type {
   GraphInterface,
   GraphTraverseCallbackType,
 } from '@/data-structure/types/graph';
 
 /**
- * 图的深度优先搜索 (递归)
+ * 图的广度优先搜索
  */
-export default function DepthFirstSearchByGraphRecursive<Element>(
+export default function <Element>(
   graph: GraphInterface<Element>,
   start: Element,
   cb?: GraphTraverseCallbackType<Element>
@@ -15,11 +16,14 @@ export default function DepthFirstSearchByGraphRecursive<Element>(
     return [];
   }
 
-  const visited = new Set<Element>();
+  const visited = new Set<Element>([start]);
+  const queue = new QueueByLinkedList<Element>();
   const traversedOrder: Element[] = [];
 
-  function traverse(vertex: Element) {
-    visited.add(vertex);
+  queue.enqueue(start);
+
+  while (!queue.isEmpty()) {
+    const vertex = queue.dequeue() as Element;
     traversedOrder.push(vertex);
 
     if (cb) {
@@ -31,11 +35,10 @@ export default function DepthFirstSearchByGraphRecursive<Element>(
         continue;
       }
 
-      traverse(neighbor);
+      visited.add(neighbor);
+      queue.enqueue(neighbor);
     }
   }
-
-  traverse(start);
 
   return traversedOrder;
 }

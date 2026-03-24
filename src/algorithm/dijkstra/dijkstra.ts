@@ -21,7 +21,7 @@ export interface DijkstraResultInterface<Element> {
 /**
  * Dijkstra 算法
  */
-export default function Dijkstra<Element>(
+export default function <Element>(
   graph: WeightedGraphInterface<Element>,
   start: Element
 ): DijkstraResultInterface<Element> {

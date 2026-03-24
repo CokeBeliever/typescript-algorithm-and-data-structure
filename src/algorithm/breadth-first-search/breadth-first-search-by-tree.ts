@@ -1,25 +1,27 @@
+import { QueueByLinkedList } from '@/data-structure/queue';
 import type {
   BinaryTreeNodeInterface,
   BinaryTreeOrderCallbackType,
 } from '@/data-structure/types/tree/binary-tree-node';
 
 /**
- * 二叉树的深度优先搜索 (递归)
+ * 二叉树的广度优先搜索
  */
-export default function DepthFirstSearchByTreeRecursive<
+export default function <
   Node extends BinaryTreeNodeInterface<Node, Element>,
   Element
->(
-  root: Node | null,
-  cb?: BinaryTreeOrderCallbackType<Node>
-) {
+>(root: Node | null, cb?: BinaryTreeOrderCallbackType<Node>) {
   if (root === null) {
     return [];
   }
 
+  const queue = new QueueByLinkedList<Node>();
   const traversedOrder: Node[] = [];
 
-  function traverse(node: Node) {
+  queue.enqueue(root);
+
+  while (!queue.isEmpty()) {
+    const node = queue.dequeue() as Node;
     traversedOrder.push(node);
 
     if (cb) {
@@ -27,15 +29,13 @@ export default function DepthFirstSearchByTreeRecursive<
     }
 
     if (node.left) {
-      traverse(node.left);
+      queue.enqueue(node.left);
     }
 
     if (node.right) {
-      traverse(node.right);
+      queue.enqueue(node.right);
     }
   }
-
-  traverse(root);
 
   return traversedOrder;
 }

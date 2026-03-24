@@ -1,28 +1,28 @@
 import {
-  DepthFirstSearchByGraphRecursive as RootDepthFirstSearchByGraphRecursive,
-  DepthFirstSearchByGraphIterative as RootDepthFirstSearchByGraphIterative,
+  depthFirstSearchByGraphRecursive as rootDepthFirstSearchByGraphRecursive,
+  depthFirstSearchByGraphIterative as rootDepthFirstSearchByGraphIterative,
   Graph,
 } from '@/index';
 import {
-  DepthFirstSearchByGraphRecursive as DfsModuleDepthFirstSearchByGraphRecursive,
-  DepthFirstSearchByGraphIterative as DfsModuleDepthFirstSearchByGraphIterative,
+  depthFirstSearchByGraphRecursive as moduleDepthFirstSearchByGraphRecursive,
+  depthFirstSearchByGraphIterative as moduleDepthFirstSearchByGraphIterative,
 } from '@/algorithm/depth-first-search';
-import DepthFirstSearchByGraphRecursive from '@/algorithm/depth-first-search/DepthFirstSearchByGraphRecursive';
-import DepthFirstSearchByGraphIterative from '@/algorithm/depth-first-search/DepthFirstSearchByGraphIterative';
+import depthFirstSearchByGraphRecursive from '@/algorithm/depth-first-search/depth-first-search-by-graph-recursive';
+import depthFirstSearchByGraphIterative from '@/algorithm/depth-first-search/depth-first-search-by-graph-iterative';
 
-describe('DepthFirstSearchByGraph', () => {
+describe('depthFirstSearchByGraph', () => {
   it('exports: depth-first-search 模块和根入口导出图的递归版与迭代版 DFS', () => {
-    expect(DfsModuleDepthFirstSearchByGraphRecursive).toBe(
-      DepthFirstSearchByGraphRecursive
+    expect(moduleDepthFirstSearchByGraphRecursive).toBe(
+      depthFirstSearchByGraphRecursive
     );
-    expect(RootDepthFirstSearchByGraphRecursive).toBe(
-      DepthFirstSearchByGraphRecursive
+    expect(rootDepthFirstSearchByGraphRecursive).toBe(
+      depthFirstSearchByGraphRecursive
     );
-    expect(DfsModuleDepthFirstSearchByGraphIterative).toBe(
-      DepthFirstSearchByGraphIterative
+    expect(moduleDepthFirstSearchByGraphIterative).toBe(
+      depthFirstSearchByGraphIterative
     );
-    expect(RootDepthFirstSearchByGraphIterative).toBe(
-      DepthFirstSearchByGraphIterative
+    expect(rootDepthFirstSearchByGraphIterative).toBe(
+      depthFirstSearchByGraphIterative
     );
   });
 
@@ -39,11 +39,15 @@ describe('DepthFirstSearchByGraph', () => {
 
     const recursiveByCallback: string[] = [];
     const iterativeByCallback: string[] = [];
-    const recursiveOrder = DepthFirstSearchByGraphRecursive(graph, 'A', (vertex) =>
-      recursiveByCallback.push(vertex)
+    const recursiveOrder = depthFirstSearchByGraphRecursive(
+      graph,
+      'A',
+      (vertex) => recursiveByCallback.push(vertex)
     );
-    const iterativeOrder = DepthFirstSearchByGraphIterative(graph, 'A', (vertex) =>
-      iterativeByCallback.push(vertex)
+    const iterativeOrder = depthFirstSearchByGraphIterative(
+      graph,
+      'A',
+      (vertex) => iterativeByCallback.push(vertex)
     );
 
     expect(recursiveOrder.join(',')).toBe('A,B,D,F,E,C');
@@ -61,8 +65,12 @@ describe('DepthFirstSearchByGraph', () => {
       .addEdge('C', 'D')
       .addEdge('D', 'A');
 
-    expect(DepthFirstSearchByGraphRecursive(graph, 'A').join(',')).toBe('A,B,C,D');
-    expect(DepthFirstSearchByGraphIterative(graph, 'A').join(',')).toBe('A,B,C,D');
+    expect(depthFirstSearchByGraphRecursive(graph, 'A').join(',')).toBe(
+      'A,B,C,D'
+    );
+    expect(depthFirstSearchByGraphIterative(graph, 'A').join(',')).toBe(
+      'A,B,C,D'
+    );
   });
 
   it('递归版与迭代版在起点不存在时都返回空数组', () => {
@@ -73,12 +81,12 @@ describe('DepthFirstSearchByGraph', () => {
     graph.addEdge('A', 'B');
 
     expect(
-      DepthFirstSearchByGraphRecursive(graph, 'Z', (vertex) =>
+      depthFirstSearchByGraphRecursive(graph, 'Z', (vertex) =>
         recursiveByCallback.push(vertex)
       )
     ).toEqual([]);
     expect(
-      DepthFirstSearchByGraphIterative(graph, 'Z', (vertex) =>
+      depthFirstSearchByGraphIterative(graph, 'Z', (vertex) =>
         iterativeByCallback.push(vertex)
       )
     ).toEqual([]);

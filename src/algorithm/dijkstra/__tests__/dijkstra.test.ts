@@ -1,20 +1,20 @@
 import {
-  Dijkstra as RootDijkstra,
+  dijkstra as rootDijkstra,
   WeightedGraph,
   getPathFromDijkstraResult as RootGetPathFromDijkstraResult,
 } from '@/index';
 import {
-  Dijkstra as ModuleDijkstra,
+  dijkstra as ModuleDijkstra,
   getPathFromDijkstraResult as ModuleGetPathFromDijkstraResult,
 } from '@/algorithm/dijkstra';
-import Dijkstra from '@/algorithm/dijkstra/Dijkstra';
-import getPathFromDijkstraResult from '@/algorithm/dijkstra/GetPathFromDijkstraResult';
+import dijkstra from '@/algorithm/dijkstra/dijkstra';
+import getPathFromDijkstraResult from '@/algorithm/dijkstra/get-path-from-dijkstra-result';
 
-describe('Dijkstra', () => {
-  it('exports: dijkstra 模块和根入口导出 Dijkstra 与 getPathFromDijkstraResult', () => {
-    expect(ModuleDijkstra).toBe(Dijkstra);
+describe('dijkstra', () => {
+  it('exports: dijkstra 模块和根入口导出 dijkstra 与 getPathFromDijkstraResult', () => {
+    expect(ModuleDijkstra).toBe(dijkstra);
     expect(ModuleGetPathFromDijkstraResult).toBe(getPathFromDijkstraResult);
-    expect(RootDijkstra).toBe(Dijkstra);
+    expect(rootDijkstra).toBe(dijkstra);
     expect(RootGetPathFromDijkstraResult).toBe(getPathFromDijkstraResult);
   });
 
@@ -32,7 +32,7 @@ describe('Dijkstra', () => {
       .addEdge('D', 'Z', 6)
       .addEdge('E', 'Z', 3);
 
-    const result = Dijkstra(graph, 'A');
+    const result = dijkstra(graph, 'A');
 
     expect(result.start).toBe('A');
     expect(result.visitedOrder.join(',')).toBe('A,C,B,D,E,Z');
@@ -56,12 +56,9 @@ describe('Dijkstra', () => {
   it('不可达顶点的距离为 Infinity，路径为空', () => {
     const graph = new WeightedGraph<string>(true);
 
-    graph
-      .addEdge('A', 'B', 1)
-      .addEdge('B', 'C', 2)
-      .addVertex('X');
+    graph.addEdge('A', 'B', 1).addEdge('B', 'C', 2).addVertex('X');
 
-    const result = Dijkstra(graph, 'A');
+    const result = dijkstra(graph, 'A');
 
     expect(result.distances.get('X')).toBe(Infinity);
     expect(result.previous.get('X')).toBeNull();
@@ -73,7 +70,7 @@ describe('Dijkstra', () => {
 
     graph.addEdge('A', 'B', 1);
 
-    const result = Dijkstra(graph, 'Z');
+    const result = dijkstra(graph, 'Z');
 
     expect(result.start).toBe('Z');
     expect(result.distances.size).toBe(0);
@@ -87,8 +84,8 @@ describe('Dijkstra', () => {
 
     graph.addEdge('A', 'B', -1);
 
-    expect(() => Dijkstra(graph, 'A')).toThrow(
-      'Dijkstra: 图中存在负权边，不能使用 Dijkstra 算法'
+    expect(() => dijkstra(graph, 'A')).toThrow(
+      'dijkstra: 图中存在负权边，不能使用 dijkstra 算法'
     );
   });
 });

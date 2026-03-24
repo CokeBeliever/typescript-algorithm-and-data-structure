@@ -35,6 +35,16 @@
       "require": "./dist/algorithm/breadth-first-search/*.js",
       "import": "./dist/algorithm/breadth-first-search/*.mjs"
     },
+    "./algorithm/depth-first-search": {
+      "types": "./dist/algorithm/depth-first-search/index.d.ts",
+      "require": "./dist/algorithm/depth-first-search/index.js",
+      "import": "./dist/algorithm/depth-first-search/index.mjs"
+    },
+    "./algorithm/depth-first-search/*": {
+      "types": "./dist/algorithm/depth-first-search/*.d.ts",
+      "require": "./dist/algorithm/depth-first-search/*.js",
+      "import": "./dist/algorithm/depth-first-search/*.mjs"
+    },
     "./data-structure/types/*": {
       "types": "./dist/data-structure/types/*.d.ts"
     },

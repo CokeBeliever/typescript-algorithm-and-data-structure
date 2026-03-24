@@ -45,6 +45,16 @@
       "require": "./dist/algorithm/depth-first-search/*.js",
       "import": "./dist/algorithm/depth-first-search/*.mjs"
     },
+    "./algorithm/dijkstra": {
+      "types": "./dist/algorithm/dijkstra/index.d.ts",
+      "require": "./dist/algorithm/dijkstra/index.js",
+      "import": "./dist/algorithm/dijkstra/index.mjs"
+    },
+    "./algorithm/dijkstra/*": {
+      "types": "./dist/algorithm/dijkstra/*.d.ts",
+      "require": "./dist/algorithm/dijkstra/*.js",
+      "import": "./dist/algorithm/dijkstra/*.mjs"
+    },
     "./data-structure/types/*": {
       "types": "./dist/data-structure/types/*.d.ts"
     },

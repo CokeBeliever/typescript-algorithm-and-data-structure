@@ -68,6 +68,16 @@
       "require": "./dist/data-structure/heap/*.js",
       "import": "./dist/data-structure/heap/*.mjs"
     },
+    "./data-structure/priority-queue": {
+      "types": "./dist/data-structure/priority-queue/index.d.ts",
+      "require": "./dist/data-structure/priority-queue/index.js",
+      "import": "./dist/data-structure/priority-queue/index.mjs"
+    },
+    "./data-structure/priority-queue/*": {
+      "types": "./dist/data-structure/priority-queue/*.d.ts",
+      "require": "./dist/data-structure/priority-queue/*.js",
+      "import": "./dist/data-structure/priority-queue/*.mjs"
+    },
     "./data-structure/linked-list": {
       "types": "./dist/data-structure/linked-list/index.d.ts",
       "require": "./dist/data-structure/linked-list/index.js",

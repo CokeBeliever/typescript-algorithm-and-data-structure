@@ -1,24 +1,191 @@
-# Repository Guidelines
+# AGENTS.md
 
-## 项目结构与模块组织
+本文件是仓库级执行规范，面向贡献者、维护者以及在本仓库内工作的 Codex/AI agent。
 
-核心源码位于 `src/`。数据结构按领域划分在 `src/data-structure/linked-list`、`queue`、`stack` 和 `tree` 下；通用工具位于 `src/utils`，包入口使用各目录内的 `index.ts`。用于子路径导出的类型声明位于 `src/data-structure/types`。测试与实现代码就近放置在 `__tests__` 目录中，例如 `src/data-structure/queue/__tests__/QueueByArray.test.ts`。构建产物输出到 `dist/`。
+## 1. 作用范围与优先级
 
-## 构建、测试与开发命令
+- 本文件默认作用于整个仓库。
+- 如果某个子目录未来出现更近一级的 `AGENTS.md`，则子目录内文件优先遵循更近一级规则。
+- 规则优先级如下：
+  1. 用户在当前任务中的明确要求
+  2. 更近一级目录中的 `AGENTS.md`
+  3. 仓库根目录中的本文件
+  4. `README.md` 与普通文档说明
 
-- `npm install`：安装 TypeScript、Jest、ts-jest 和 Prettier。
-- `npm test`：在 Node 环境下运行 Jest 测试，直接验证 TypeScript 源码。
-- `npm run build`：使用 `tsc` 构建 CommonJS 与 ESM 产物，然后复制声明文件到可发布目录。
-- `npm pack --dry-run`：发布前检查最终打包内容。
+## 2. 这个文件要解决什么问题
 
-## 代码风格与命名约定
+- 统一目录结构与命名风格。
+- 避免 Windows 下大小写重命名导致的 Git 和 TypeScript 冲突。
+- 让新增模块、测试、导出和文档更新有固定套路。
+- 让 Codex 在没有额外提醒时，也能按仓库约定稳定执行。
 
-遵循 `.editorconfig`：2 空格缩进、UTF-8 编码、LF 换行，并删除行尾空白。Prettier 使用单引号。保持 TypeScript 与严格模式兼容，内部导入优先使用现有的 `@/` 别名。实现文件和导出类使用 PascalCase 命名，例如 `BinarySearchTree.ts`、`QueueByLinkedList.ts`；目录入口文件统一为 `index.ts`。继续沿用每个数据结构一个小型聚焦模块的组织方式。
+## 3. 快速执行规则
 
-## 测试规范
+- 新增目录时使用 `kebab-case`。
+- 新增 `class` 文件时使用 `PascalCase.ts`，并让文件名与类名一致。
+- 新增普通函数或算法文件时使用 `kebab-case.ts`。
+- 类导出名使用 `PascalCase`，函数导出名使用 `camelCase`。
+- 测试文件名跟随被测文件风格：类用 `PascalCase.test.ts`，函数用 `kebab-case.test.ts`。
+- 每个可对外暴露的目录都提供 `index.ts`。
+- 修改文件名后，必须同步修改所有导入和目录导出。
+- 内部导入优先使用 `@/` 别名。
+- 不要手动编辑 `dist/`。
 
-测试框架为 Jest，配合 `ts-jest` 运行。新增测试时，放到最近的 `__tests__` 目录，并使用与目标类或模块对应的 `*.test.ts` 文件名，例如 `LinkedList.test.ts`。测试应覆盖正常流程、边界情况以及回归场景，尤其是插入、删除、遍历和空状态行为。提交 PR 前运行 `npm test`；如果修改了导出或声明文件，还应运行 `npm run build`。
+## 4. 目录结构
 
-## 提交与 Pull Request 规范
+- 核心源码位于 `src/`。
+- 算法位于 `src/algorithm/`。
+- 数据结构位于 `src/data-structure/`。
+- 类型声明位于 `src/data-structure/types/`。
+- 工具函数位于 `src/utils/`。
+- 测试与实现代码就近放在各模块目录下的 `__tests__/` 中。
+- 构建产物位于 `dist/`。
 
-最近的提交标题采用简短约定式前缀，例如 `feat: ...`、`fix: ...`、`chore: ...`、`del: ...`。提交信息应使用祈使语气，并聚焦单一变更。PR 需要说明行为变化、列出受影响模块，并标明任何导出接口或类型层面的调整。若有关联 issue，请附上链接；同时在 PR 描述中写明测试结果，例如 `npm test` 和 `npm run build`。
+## 5. 命名速查表
+
+| 场景 | 文件名 | 导出名 | 示例 |
+| --- | --- | --- | --- |
+| 类、节点、面向对象实现 | `PascalCase.ts` | `PascalCase` | `BinarySearchTree.ts` -> `BinarySearchTree` |
+| 普通函数、算法、辅助函数 | `kebab-case.ts` | `camelCase` | `get-path-from-dijkstra-result.ts` -> `getPathFromDijkstraResult` |
+| 目录入口 | `index.ts` | 按实际导出风格 | `queue/index.ts` |
+| 类型声明 | `kebab-case.d.ts` | `PascalCase` 类型名 | `binary-search-tree.d.ts` |
+| 类测试 | `PascalCase.test.ts` | 无 | `QueueByArray.test.ts` |
+| 函数测试 | `kebab-case.test.ts` | 无 | `dijkstra.test.ts` |
+
+## 6. 命名与导出规则
+
+### 6.1 目录命名
+
+- 目录统一使用 `kebab-case`。
+- 测试目录固定命名为 `__tests__`。
+- 不要在同级目录混用 `PascalCase` 与 `kebab-case` 目录名。
+
+### 6.2 源码文件命名
+
+- 一个文件只负责一个清晰的核心实现。
+- 以类为主导出的文件必须使用 `PascalCase.ts`。
+- 以普通函数为主导出的文件必须使用 `kebab-case.ts`。
+- 文件名必须与主导出语义一致，不要使用模糊缩写。
+
+### 6.3 导出命名
+
+- 类、类型、接口使用 `PascalCase`。
+- 普通函数使用 `camelCase`。
+- `index.ts` 中的导出名称必须和文件真实命名风格匹配。
+- 不要把函数文件伪装成类风格导出，也不要把类文件导出成函数风格名称。
+
+### 6.4 测试命名
+
+- 测试文件名跟随被测源码文件风格。
+- 一个测试文件应聚焦一个实现文件或一组强相关导出。
+- 新增公共导出时，优先补齐对应测试。
+
+## 7. 导入与路径规则
+
+- 所有导入路径大小写必须与真实磁盘路径完全一致。
+- 内部源码导入优先使用 `@/` 别名。
+- 修改文件名、目录名或导出名时，必须同步修改：
+  - 所有调用处导入
+  - 所在目录的 `index.ts`
+  - 相关测试
+  - 如有必要，`README.md`
+- 保持 `tsconfig.json` 中的 `forceConsistentCasingInFileNames: true`。
+
+## 8. Windows 下的文件重命名规则
+
+Windows 文件系统通常不区分大小写，因此“只修改大小写”的重命名必须显式处理。
+
+- 不要只靠编辑器或资源管理器修改文件名大小写。
+- 只要涉及大小写重命名，统一使用 `git mv`。
+- 如果只是改大小写，必须走两步重命名：
+
+```bash
+git mv src/algorithm/dijkstra/Dijkstra.ts src/algorithm/dijkstra/__tmp__.ts
+git mv src/algorithm/dijkstra/__tmp__.ts src/algorithm/dijkstra/dijkstra.ts
+```
+
+- 重命名后检查：
+  - `git status --short`
+  - `git diff --name-status`
+- 目标是让 Git 识别为重命名，而不是“删除 + 新增”。
+
+## 9. 新增或修改模块时的标准流程
+
+### 9.1 新增类模块
+
+1. 使用 `PascalCase.ts` 创建实现文件。
+2. 在相邻 `__tests__/` 中新增同名风格测试。
+3. 在目录 `index.ts` 中补充导出。
+4. 如果涉及公共入口，补充更上层的 `index.ts` 导出。
+5. 如用户可见，更新 `README.md`。
+
+### 9.2 新增函数或算法模块
+
+1. 使用 `kebab-case.ts` 创建实现文件。
+2. 导出名称使用 `camelCase`。
+3. 在相邻 `__tests__/` 中新增 `kebab-case.test.ts`。
+4. 更新目录 `index.ts`。
+5. 如用户可见，更新 `README.md`。
+
+### 9.3 修改公共导出
+
+1. 检查根入口和子路径入口是否都需要同步修改。
+2. 检查测试中的导入名称是否仍然正确。
+3. 检查 `package.json` 的 `exports` 是否需要同步。
+4. 运行至少一轮相关验证。
+
+## 10. 编码风格
+
+- 遵循 `.editorconfig`：UTF-8、2 空格缩进、LF 换行、文件末尾保留换行、移除行尾空白。
+- Prettier 使用单引号。
+- 保持 TypeScript 严格模式兼容。
+- 优先使用清晰直接的命名，不要为了简短牺牲语义。
+- 优先保持现有模块风格一致，而不是在局部引入新风格。
+
+## 11. 验证要求
+
+### 11.1 常用命令
+
+- `npm install`
+- `npm test`
+- `npm run build`
+- `npm pack --dry-run`
+
+### 11.2 何时运行什么
+
+- 修改实现逻辑后，至少运行 `npm test`。
+- 修改导出、类型声明、构建相关逻辑后，运行 `npm test` 和 `npm run build`。
+- 修改发包内容或导出路径时，可额外运行 `npm pack --dry-run`。
+
+### 11.3 提交前检查清单
+
+- 文件命名是否符合规则。
+- 导入路径大小写是否与真实文件一致。
+- `index.ts` 导出是否同步。
+- 测试是否同步更新。
+- 文档是否需要同步更新。
+- `git diff --name-status` 中是否存在意外的大小写问题。
+
+## 12. 提交与 PR 规则
+
+- 提交标题使用简短约定式前缀，例如 `feat: ...`、`fix: ...`、`chore: ...`、`del: ...`。
+- 一次提交尽量只做一类事情。
+- 大小写重命名尽量单独提交。
+- PR 说明应包含：
+  - 行为变化
+  - 受影响模块
+  - 导出或类型变更
+  - 本地验证结果
+
+## 13. 文档维护规则
+
+- 协作规范、命名规范、提交流程优先写入 `AGENTS.md`。
+- 面向使用者的安装、导入示例、模块列表写入 `README.md`。
+- 文档中的文件名、路径、导出名必须与源码保持一致。
+
+## 14. 给 Codex 的执行提示
+
+- 先判断当前改动属于“类模块”还是“函数模块”，再决定文件命名。
+- 改文件名时，先检查是否会触发大小写冲突。
+- 发现命名风格与本规范不一致时，优先保持仓库整体一致性，并在必要时连同导出和测试一起修复。
+- 如果用户只要求修一个点，但该点会导致导出、测试或路径失配，默认一并补齐这些相邻改动。

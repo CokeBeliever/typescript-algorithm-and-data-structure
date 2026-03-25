@@ -75,6 +75,16 @@
       "require": "./dist/algorithm/greedy-best-first-search/*.js",
       "import": "./dist/algorithm/greedy-best-first-search/*.mjs"
     },
+    "./algorithm/heuristic": {
+      "types": "./dist/algorithm/heuristic/index.d.ts",
+      "require": "./dist/algorithm/heuristic/index.js",
+      "import": "./dist/algorithm/heuristic/index.mjs"
+    },
+    "./algorithm/heuristic/*": {
+      "types": "./dist/algorithm/heuristic/*.d.ts",
+      "require": "./dist/algorithm/heuristic/*.js",
+      "import": "./dist/algorithm/heuristic/*.mjs"
+    },
     "./data-structure/types/*": {
       "types": "./dist/data-structure/types/*.d.ts"
     },
@@ -161,7 +171,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && node scripts/copy-type-declarations.js",
+    "build": "node scripts/clean-build-directories.js && tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && node scripts/copy-type-declarations.js",
     "test": "jest",
     "prepublishOnly": "npm run build"
   },

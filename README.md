@@ -10,6 +10,10 @@ TypeScript 实现的基础数据结构与经典算法练习仓库，提供根入
 | --- | --- | --- | --- | --- |
 | `aStar` | 最短路径 | 用启发函数引导搜索方向，在非负权图中寻找起点到目标点的最短路径。 | 加权图、优先队列、Dijkstra、启发函数 | 地图寻路、游戏寻路、单目标路径规划 |
 | `getPathFromAStarResult` | 路径还原 | 根据 `aStar` 的前驱表还原从起点到目标点的路径。 | 数组或列表、前驱节点概念、A* 结果结构 | 展示路径结果、输出具体节点序列 |
+| `createManhattanDistanceHeuristic` | 启发函数 | 创建基于坐标的曼哈顿距离启发函数，支持 2D/3D，缺省 `z` 按 `0` 处理。 | 坐标系、绝对值、网格最短路 | 四方向网格寻路、城市街区距离估计、3D 轴向移动估计 |
+| `createEuclideanDistanceHeuristic` | 启发函数 | 创建基于坐标的欧几里得距离启发函数，支持 2D/3D，缺省 `z` 按 `0` 处理。 | 坐标系、平方和开方、几何距离 | 平面导航、连续空间距离估计、3D 空间距离估计 |
+| `createChebyshevDistanceHeuristic` | 启发函数 | 创建基于坐标的切比雪夫距离启发函数，支持 2D/3D，缺省 `z` 按 `0` 处理。 | 坐标系、最大值、多方向移动 | 允许多方向且单步代价一致的网格寻路 |
+| `createOctileDistanceHeuristic2D` | 启发函数 | 创建基于二维坐标 Octile 距离的启发函数。 | 坐标系、八方向移动、对角代价 | 二维八方向网格寻路、对角步长为 `sqrt(2)` 的场景 |
 | `breadthFirstSearchByGraph` | 图遍历 | 按层逐步访问图中的顶点。 | 队列、图的邻接关系、已访问集合 | 无权图最短路径、层级扩散、连通性搜索 |
 | `breadthFirstSearchByTree` | 树遍历 | 按层访问树节点，也常被称为层序遍历。 | 队列、二叉树或普通树结构 | 层级展示、逐层统计、最短层级问题 |
 | `depthFirstSearchByGraphRecursive` | 图遍历 | 用递归方式沿路径尽可能深入，再回溯继续搜索。 | 递归、调用栈、图的邻接关系、已访问集合 | 路径搜索、连通分量、拓扑相关的遍历基础 |
@@ -62,33 +66,38 @@ import {
   LinkedList,
   WeightedGraph,
   aStar,
+  createManhattanDistanceHeuristic,
   getPathFromAStarResult,
   dijkstra,
   getPathFromDijkstraResult,
 } from 'typescript-algorithm-and-data-structure';
 
-const graph = new WeightedGraph<string>(true);
+interface PointNodeInterface {
+  name: string;
+  x: number;
+  y: number;
+}
+
+const graph = new WeightedGraph<PointNodeInterface>(true);
+const getCoordinate = (point: PointNodeInterface) => ({
+  x: point.x,
+  y: point.y,
+});
+const heuristic = createManhattanDistanceHeuristic(getCoordinate);
+const start = { name: 'A', x: 0, y: 0 };
+const middle = { name: 'B', x: 1, y: 0 };
+const target = { name: 'D', x: 2, y: 0 };
 
 graph
-  .addEdge('A', 'B', 4)
-  .addEdge('A', 'C', 2)
-  .addEdge('C', 'B', 1)
-  .addEdge('B', 'D', 5);
+  .addEdge(start, middle, 1)
+  .addEdge(middle, target, 1)
+  .addEdge(start, target, 5);
 
-const aStarResult = aStar(graph, 'A', 'D', (current) => {
-  const heuristicMap = new Map([
-    ['A', 5],
-    ['B', 2],
-    ['C', 3],
-    ['D', 0],
-  ]);
-
-  return heuristicMap.get(current) ?? 0;
-});
+const aStarResult = aStar(graph, start, target, heuristic);
 const aStarPath = getPathFromAStarResult(aStarResult);
 
-const result = dijkstra(graph, 'A');
-const path = getPathFromDijkstraResult(result, 'D');
+const dijkstraResult = dijkstra(graph, start);
+const dijkstraPath = getPathFromDijkstraResult(dijkstraResult, target);
 ```
 
 ### 子路径导入
@@ -96,6 +105,7 @@ const path = getPathFromDijkstraResult(result, 'D');
 ```ts
 import { aStar, getPathFromAStarResult } from 'typescript-algorithm-and-data-structure/algorithm/a-star';
 import { dijkstra, getPathFromDijkstraResult } from 'typescript-algorithm-and-data-structure/algorithm/dijkstra';
+import { createOctileDistanceHeuristic2D } from 'typescript-algorithm-and-data-structure/algorithm/heuristic';
 import { BinarySearchTree } from 'typescript-algorithm-and-data-structure/data-structure/tree';
 import { QueueByArray } from 'typescript-algorithm-and-data-structure/data-structure/queue';
 ```

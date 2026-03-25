@@ -36,7 +36,7 @@
 - 核心源码位于 `src/`。
 - 算法位于 `src/algorithm/`。
 - 数据结构位于 `src/data-structure/`。
-- 类型声明位于 `src/data-structure/types/`。
+- 数据结构公共类型与接口采用 colocated 方式，放在各自模块目录下的 `*.types.ts` 文件中。
 - 工具函数位于 `src/utils/`。
 - 测试与实现代码就近放在各模块目录下的 `__tests__/` 中。
 - 构建产物位于 `dist/`。
@@ -48,7 +48,7 @@
 | 类、节点、面向对象实现 | `PascalCase.ts` | `PascalCase` | `BinarySearchTree.ts` -> `BinarySearchTree` |
 | 普通函数、算法、辅助函数 | `kebab-case.ts` | `camelCase` | `get-path-from-dijkstra-result.ts` -> `getPathFromDijkstraResult` |
 | 目录入口 | `index.ts` | 按实际导出风格 | `queue/index.ts` |
-| 类型声明 | `kebab-case.d.ts` | `PascalCase` 类型名 | `binary-search-tree.d.ts` |
+| 模块公共类型/接口 | `kebab-case.types.ts` | `PascalCase` 类型名 | `binary-search-tree.types.ts` |
 | 类测试 | `PascalCase.test.ts` | 无 | `QueueByArray.test.ts` |
 | 函数测试 | `kebab-case.test.ts` | 无 | `dijkstra.test.ts` |
 
@@ -65,6 +65,7 @@
 - 一个文件只负责一个清晰的核心实现。
 - 以类为主导出的文件必须使用 `PascalCase.ts`。
 - 以普通函数为主导出的文件必须使用 `kebab-case.ts`。
+- 模块级公共类型或接口文件使用 `kebab-case.types.ts`。
 - 文件名必须与主导出语义一致，不要使用模糊缩写。
 
 ### 6.3 导出命名
@@ -72,6 +73,7 @@
 - 类、类型、接口使用 `PascalCase`。
 - 普通函数使用 `camelCase`。
 - `index.ts` 中的导出名称必须和文件真实命名风格匹配。
+- 公共类型统一从所属模块的 `index.ts` 导出，不要额外暴露内部类型路径。
 - 不要把函数文件伪装成类风格导出，也不要把类文件导出成函数风格名称。
 
 ### 6.4 测试命名
@@ -114,25 +116,28 @@ git mv src/algorithm/dijkstra/__tmp__.ts src/algorithm/dijkstra/dijkstra.ts
 ### 9.1 新增类模块
 
 1. 使用 `PascalCase.ts` 创建实现文件。
-2. 在相邻 `__tests__/` 中新增同名风格测试。
-3. 在目录 `index.ts` 中补充导出。
-4. 如果涉及公共入口，补充更上层的 `index.ts` 导出。
-5. 如用户可见，更新 `README.md`。
+2. 如需抽象公共契约，在同目录新增或更新对应的 `kebab-case.types.ts`。
+3. 在相邻 `__tests__/` 中新增同名风格测试。
+4. 在目录 `index.ts` 中补充导出。
+5. 如果涉及公共入口，补充更上层的 `index.ts` 导出。
+6. 如用户可见，更新 `README.md`。
 
 ### 9.2 新增函数或算法模块
 
 1. 使用 `kebab-case.ts` 创建实现文件。
 2. 导出名称使用 `camelCase`。
-3. 在相邻 `__tests__/` 中新增 `kebab-case.test.ts`。
-4. 更新目录 `index.ts`。
-5. 如用户可见，更新 `README.md`。
+3. 如需公共类型，在所属模块目录中新增或更新 `kebab-case.types.ts`。
+4. 在相邻 `__tests__/` 中新增 `kebab-case.test.ts`。
+5. 更新目录 `index.ts`。
+6. 如用户可见，更新 `README.md`。
 
 ### 9.3 修改公共导出
 
 1. 检查根入口和子路径入口是否都需要同步修改。
-2. 检查测试中的导入名称是否仍然正确。
-3. 检查 `package.json` 的 `exports` 是否需要同步。
-4. 运行至少一轮相关验证。
+2. 检查相关 `*.types.ts` 是否也需要同步调整。
+3. 检查测试中的导入名称是否仍然正确。
+4. 检查 `package.json` 的 `exports` 是否需要同步。
+5. 运行至少一轮相关验证。
 
 ## 10. 编码风格
 
@@ -186,6 +191,7 @@ git mv src/algorithm/dijkstra/__tmp__.ts src/algorithm/dijkstra/dijkstra.ts
 ## 14. 给 Codex 的执行提示
 
 - 先判断当前改动属于“类模块”还是“函数模块”，再决定文件命名。
+- 涉及数据结构公共类型时，优先放在对应模块目录下的 `*.types.ts`，不要恢复集中式 `src/data-structure/types/`。
 - 改文件名时，先检查是否会触发大小写冲突。
 - 发现命名风格与本规范不一致时，优先保持仓库整体一致性，并在必要时连同导出和测试一起修复。
 - 如果用户只要求修一个点，但该点会导致导出、测试或路径失配，默认一并补齐这些相邻改动。

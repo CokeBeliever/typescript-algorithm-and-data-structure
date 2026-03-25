@@ -1,5 +1,5 @@
 import { LinkedList } from '@/data-structure/linked-list';
-import type { StackInterface } from '@/data-structure/types/stack';
+import type { StackInterface } from '@/data-structure/stack/stack.types';
 
 /**
  * 栈 (链表实现)

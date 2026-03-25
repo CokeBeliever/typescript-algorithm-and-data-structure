@@ -1,4 +1,4 @@
-import type { GraphInterface } from '@/data-structure/types/graph';
+import type { GraphInterface } from '@/data-structure/graph/graph.types';
 
 /**
  * 图 (邻接表实现)

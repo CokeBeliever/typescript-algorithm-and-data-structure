@@ -1,5 +1,5 @@
 import Comparator from '@/utils/Comparator';
-import type { HeapInterface } from '@/data-structure/types/heap';
+import type { HeapInterface } from '@/data-structure/heap/heap.types';
 
 /**
  * 二叉堆

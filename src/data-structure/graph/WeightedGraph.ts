@@ -1,7 +1,7 @@
 import type {
   WeightedGraphEdgeInterface,
   WeightedGraphInterface,
-} from '@/data-structure/types/graph';
+} from '@/data-structure/graph/graph.types';
 
 /**
  * 带权图 (邻接表实现)

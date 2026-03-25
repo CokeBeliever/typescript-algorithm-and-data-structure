@@ -1,7 +1,7 @@
 import type {
   BinaryTreeNodeInterface,
   BinaryTreeOrderCallbackType,
-} from '@/data-structure/types/tree/binary-tree-node';
+} from '@/data-structure/tree/binary-tree-node.types';
 
 /**
  * 二叉树的深度优先搜索 (递归)

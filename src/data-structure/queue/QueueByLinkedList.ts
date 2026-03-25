@@ -1,5 +1,5 @@
 import { LinkedList } from '@/data-structure/linked-list';
-import type { QueueInterface } from '@/data-structure/types/queue';
+import type { QueueInterface } from '@/data-structure/queue/queue.types';
 
 /**
  * 队列 (链表实现)

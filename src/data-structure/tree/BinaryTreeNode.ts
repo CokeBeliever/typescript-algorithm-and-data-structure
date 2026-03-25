@@ -1,10 +1,8 @@
 import { QueueByLinkedList } from '@/data-structure/queue';
 import type {
-  BinaryTreeNodeByBinaryLinkedListInterface,
-  BinaryTreeNodeByTridentLinkedListInterface,
   BinaryTreeNodeInterface,
   BinaryTreeOrderCallbackType,
-} from '@/data-structure/types/tree/binary-tree-node';
+} from '@/data-structure/tree/binary-tree-node.types';
 
 /**
  * 二叉树结点 (二叉链表实现)
@@ -12,7 +10,7 @@ import type {
 abstract class BinaryTreeNodeByBinaryLinkedList<
   T extends BinaryTreeNodeByBinaryLinkedList<T, Element>,
   Element
-> implements BinaryTreeNodeByBinaryLinkedListInterface<T, Element>
+>
 {
   data: Element;
   left: T | null;
@@ -31,7 +29,7 @@ abstract class BinaryTreeNodeByBinaryLinkedList<
 abstract class BinaryTreeNodeByTridentLinkedList<
   T extends BinaryTreeNodeByTridentLinkedList<T, Element>,
   Element
-> implements BinaryTreeNodeByTridentLinkedListInterface<T, Element>
+>
 {
   data: Element;
   left: T | null;

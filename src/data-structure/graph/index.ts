@@ -5,4 +5,4 @@ export type {
   GraphTraverseCallbackType,
   WeightedGraphEdgeInterface,
   WeightedGraphInterface,
-} from '@/data-structure/types/graph';
+} from '@/data-structure/graph/graph.types';

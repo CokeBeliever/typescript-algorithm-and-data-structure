@@ -1,5 +1,5 @@
 import { MinPriorityQueue } from '@/data-structure/priority-queue';
-import type { WeightedGraphInterface } from '@/data-structure/types/graph';
+import type { WeightedGraphInterface } from '@/data-structure/graph/graph.types';
 
 /**
  * Dijkstra 算法结果接口

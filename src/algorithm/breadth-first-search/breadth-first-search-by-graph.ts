@@ -2,7 +2,7 @@ import { QueueByLinkedList } from '@/data-structure/queue';
 import type {
   GraphInterface,
   GraphTraverseCallbackType,
-} from '@/data-structure/types/graph';
+} from '@/data-structure/graph/graph.types';
 
 /**
  * 图的广度优先搜索

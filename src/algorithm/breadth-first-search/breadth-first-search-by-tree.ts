@@ -2,7 +2,7 @@ import { QueueByLinkedList } from '@/data-structure/queue';
 import type {
   BinaryTreeNodeInterface,
   BinaryTreeOrderCallbackType,
-} from '@/data-structure/types/tree/binary-tree-node';
+} from '@/data-structure/tree/binary-tree-node.types';
 
 /**
  * 二叉树的广度优先搜索

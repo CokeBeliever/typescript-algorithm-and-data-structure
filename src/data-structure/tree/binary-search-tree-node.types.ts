@@ -1,4 +1,4 @@
-import type { BinaryTreeNodeInterface } from '@/data-structure/types/tree/binary-tree-node';
+import type { BinaryTreeNodeInterface } from '@/data-structure/tree/binary-tree-node.types';
 
 /**
  * 二叉查找树结点接口

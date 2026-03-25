@@ -5,8 +5,6 @@ const projectRoot = path.resolve(__dirname, '..');
 const distRoot = path.join(projectRoot, 'dist');
 const esmBuildRoot = path.join(projectRoot, '.build', 'esm');
 const legacyEsmRoot = path.join(distRoot, 'esm');
-const sourceRoot = path.join(projectRoot, 'src', 'data-structure', 'types');
-const targetRoot = path.join(distRoot, 'data-structure', 'types');
 
 function removeDirectory(targetPath) {
   fs.rmSync(targetPath, { recursive: true, force: true });
@@ -14,24 +12,6 @@ function removeDirectory(targetPath) {
 
 function ensureDirectory(targetPath) {
   fs.mkdirSync(targetPath, { recursive: true });
-}
-
-function copyDirectory(sourceDir, targetDir) {
-  ensureDirectory(targetDir);
-
-  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
-    const sourcePath = path.join(sourceDir, entry.name);
-    const targetPath = path.join(targetDir, entry.name);
-
-    if (entry.isDirectory()) {
-      copyDirectory(sourcePath, targetPath);
-      continue;
-    }
-
-    if (entry.isFile() && entry.name.endsWith('.d.ts')) {
-      fs.copyFileSync(sourcePath, targetPath);
-    }
-  }
 }
 
 function resolveEsmTarget(target) {
@@ -128,7 +108,6 @@ function rewriteDistDeclarationsAndCjs(currentDir) {
   }
 }
 
-copyDirectory(sourceRoot, targetRoot);
 removeDirectory(legacyEsmRoot);
 copyAndRewriteEsmDirectory(esmBuildRoot);
 rewriteDistDeclarationsAndCjs(distRoot);

@@ -110,12 +110,9 @@ import { BinarySearchTree } from 'typescript-algorithm-and-data-structure/data-s
 import { QueueByArray } from 'typescript-algorithm-and-data-structure/data-structure/queue';
 ```
 
-### 更细粒度的直接导入
+### 工具类导入
 
 ```ts
-import BinarySearchTree from 'typescript-algorithm-and-data-structure/data-structure/tree/BinarySearchTree';
-import aStar from 'typescript-algorithm-and-data-structure/algorithm/a-star/a-star';
-import dijkstra from 'typescript-algorithm-and-data-structure/algorithm/dijkstra/dijkstra';
 import Comparator from 'typescript-algorithm-and-data-structure/utils/Comparator';
 ```
 
@@ -129,6 +126,8 @@ import type {
 
 import type { WeightedGraphInterface } from 'typescript-algorithm-and-data-structure/data-structure/graph';
 ```
+
+公共类型统一从各模块入口导出，不需要也不建议导入内部 `*.types` 文件路径。
 
 ### CommonJS
 

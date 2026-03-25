@@ -1,9 +1,11 @@
 import { MinHeap } from '@/data-structure/heap';
-import type {
-  PriorityQueueInterface,
-  PriorityQueueNodeInterface,
-} from '@/data-structure/types/priority-queue';
+import type { PriorityQueueInterface } from '@/data-structure/priority-queue/priority-queue.types';
 import Comparator from '@/utils/Comparator';
+
+type PriorityQueueNode<Element> = {
+  value: Element;
+  priority: number;
+};
 
 /**
  * 优先队列
@@ -15,11 +17,11 @@ export default abstract class PriorityQueue<Element>
   protected _comparator: Comparator<Element>;
 
   /** 最小堆 */
-  protected _heap: MinHeap<PriorityQueueNodeInterface<Element>>;
+  protected _heap: MinHeap<PriorityQueueNode<Element>>;
 
   constructor(comparatorFunction?: (a: Element, b: Element) => number) {
     this._comparator = new Comparator(comparatorFunction);
-    this._heap = new MinHeap<PriorityQueueNodeInterface<Element>>((a, b) => {
+    this._heap = new MinHeap<PriorityQueueNode<Element>>((a, b) => {
       const priorityComparison = this._comparePriority(a.priority, b.priority);
 
       if (priorityComparison !== 0) {
@@ -91,8 +93,8 @@ export default abstract class PriorityQueue<Element>
   }
 
   protected _compareValueOnly(
-    a: PriorityQueueNodeInterface<Element>,
-    b: PriorityQueueNodeInterface<Element>
+    a: PriorityQueueNode<Element>,
+    b: PriorityQueueNode<Element>
   ) {
     return this._comparator.compare(a.value, b.value);
   }

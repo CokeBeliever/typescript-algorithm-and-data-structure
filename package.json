@@ -20,158 +20,80 @@
       "require": "./dist/algorithm/index.js",
       "import": "./dist/algorithm/index.mjs"
     },
-    "./algorithm/*": {
-      "types": "./dist/algorithm/*.d.ts",
-      "require": "./dist/algorithm/*.js",
-      "import": "./dist/algorithm/*.mjs"
-    },
     "./algorithm/breadth-first-search": {
       "types": "./dist/algorithm/breadth-first-search/index.d.ts",
       "require": "./dist/algorithm/breadth-first-search/index.js",
       "import": "./dist/algorithm/breadth-first-search/index.mjs"
-    },
-    "./algorithm/breadth-first-search/*": {
-      "types": "./dist/algorithm/breadth-first-search/*.d.ts",
-      "require": "./dist/algorithm/breadth-first-search/*.js",
-      "import": "./dist/algorithm/breadth-first-search/*.mjs"
     },
     "./algorithm/depth-first-search": {
       "types": "./dist/algorithm/depth-first-search/index.d.ts",
       "require": "./dist/algorithm/depth-first-search/index.js",
       "import": "./dist/algorithm/depth-first-search/index.mjs"
     },
-    "./algorithm/depth-first-search/*": {
-      "types": "./dist/algorithm/depth-first-search/*.d.ts",
-      "require": "./dist/algorithm/depth-first-search/*.js",
-      "import": "./dist/algorithm/depth-first-search/*.mjs"
-    },
     "./algorithm/a-star": {
       "types": "./dist/algorithm/a-star/index.d.ts",
       "require": "./dist/algorithm/a-star/index.js",
       "import": "./dist/algorithm/a-star/index.mjs"
-    },
-    "./algorithm/a-star/*": {
-      "types": "./dist/algorithm/a-star/*.d.ts",
-      "require": "./dist/algorithm/a-star/*.js",
-      "import": "./dist/algorithm/a-star/*.mjs"
     },
     "./algorithm/dijkstra": {
       "types": "./dist/algorithm/dijkstra/index.d.ts",
       "require": "./dist/algorithm/dijkstra/index.js",
       "import": "./dist/algorithm/dijkstra/index.mjs"
     },
-    "./algorithm/dijkstra/*": {
-      "types": "./dist/algorithm/dijkstra/*.d.ts",
-      "require": "./dist/algorithm/dijkstra/*.js",
-      "import": "./dist/algorithm/dijkstra/*.mjs"
-    },
     "./algorithm/greedy-best-first-search": {
       "types": "./dist/algorithm/greedy-best-first-search/index.d.ts",
       "require": "./dist/algorithm/greedy-best-first-search/index.js",
       "import": "./dist/algorithm/greedy-best-first-search/index.mjs"
-    },
-    "./algorithm/greedy-best-first-search/*": {
-      "types": "./dist/algorithm/greedy-best-first-search/*.d.ts",
-      "require": "./dist/algorithm/greedy-best-first-search/*.js",
-      "import": "./dist/algorithm/greedy-best-first-search/*.mjs"
     },
     "./algorithm/heuristic": {
       "types": "./dist/algorithm/heuristic/index.d.ts",
       "require": "./dist/algorithm/heuristic/index.js",
       "import": "./dist/algorithm/heuristic/index.mjs"
     },
-    "./algorithm/heuristic/*": {
-      "types": "./dist/algorithm/heuristic/*.d.ts",
-      "require": "./dist/algorithm/heuristic/*.js",
-      "import": "./dist/algorithm/heuristic/*.mjs"
-    },
-    "./data-structure/types/*": {
-      "types": "./dist/data-structure/types/*.d.ts"
-    },
     "./data-structure/graph": {
       "types": "./dist/data-structure/graph/index.d.ts",
       "require": "./dist/data-structure/graph/index.js",
       "import": "./dist/data-structure/graph/index.mjs"
-    },
-    "./data-structure/graph/*": {
-      "types": "./dist/data-structure/graph/*.d.ts",
-      "require": "./dist/data-structure/graph/*.js",
-      "import": "./dist/data-structure/graph/*.mjs"
     },
     "./data-structure/heap": {
       "types": "./dist/data-structure/heap/index.d.ts",
       "require": "./dist/data-structure/heap/index.js",
       "import": "./dist/data-structure/heap/index.mjs"
     },
-    "./data-structure/heap/*": {
-      "types": "./dist/data-structure/heap/*.d.ts",
-      "require": "./dist/data-structure/heap/*.js",
-      "import": "./dist/data-structure/heap/*.mjs"
-    },
     "./data-structure/priority-queue": {
       "types": "./dist/data-structure/priority-queue/index.d.ts",
       "require": "./dist/data-structure/priority-queue/index.js",
       "import": "./dist/data-structure/priority-queue/index.mjs"
-    },
-    "./data-structure/priority-queue/*": {
-      "types": "./dist/data-structure/priority-queue/*.d.ts",
-      "require": "./dist/data-structure/priority-queue/*.js",
-      "import": "./dist/data-structure/priority-queue/*.mjs"
     },
     "./data-structure/linked-list": {
       "types": "./dist/data-structure/linked-list/index.d.ts",
       "require": "./dist/data-structure/linked-list/index.js",
       "import": "./dist/data-structure/linked-list/index.mjs"
     },
-    "./data-structure/linked-list/*": {
-      "types": "./dist/data-structure/linked-list/*.d.ts",
-      "require": "./dist/data-structure/linked-list/*.js",
-      "import": "./dist/data-structure/linked-list/*.mjs"
-    },
     "./data-structure/queue": {
       "types": "./dist/data-structure/queue/index.d.ts",
       "require": "./dist/data-structure/queue/index.js",
       "import": "./dist/data-structure/queue/index.mjs"
-    },
-    "./data-structure/queue/*": {
-      "types": "./dist/data-structure/queue/*.d.ts",
-      "require": "./dist/data-structure/queue/*.js",
-      "import": "./dist/data-structure/queue/*.mjs"
     },
     "./data-structure/stack": {
       "types": "./dist/data-structure/stack/index.d.ts",
       "require": "./dist/data-structure/stack/index.js",
       "import": "./dist/data-structure/stack/index.mjs"
     },
-    "./data-structure/stack/*": {
-      "types": "./dist/data-structure/stack/*.d.ts",
-      "require": "./dist/data-structure/stack/*.js",
-      "import": "./dist/data-structure/stack/*.mjs"
-    },
     "./data-structure/tree": {
       "types": "./dist/data-structure/tree/index.d.ts",
       "require": "./dist/data-structure/tree/index.js",
       "import": "./dist/data-structure/tree/index.mjs"
-    },
-    "./data-structure/tree/*": {
-      "types": "./dist/data-structure/tree/*.d.ts",
-      "require": "./dist/data-structure/tree/*.js",
-      "import": "./dist/data-structure/tree/*.mjs"
     },
     "./utils/Comparator": {
       "types": "./dist/utils/Comparator.d.ts",
       "require": "./dist/utils/Comparator.js",
       "import": "./dist/utils/Comparator.mjs"
     },
-    "./utils/*": {
-      "types": "./dist/utils/*.d.ts",
-      "require": "./dist/utils/*.js",
-      "import": "./dist/utils/*.mjs"
-    },
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "node scripts/clean-build-directories.js && tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && node scripts/copy-type-declarations.js",
+    "build": "node scripts/clean-build-directories.js && tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && node scripts/finalize-build.js",
     "test": "jest",
     "prepublishOnly": "npm run build"
   },

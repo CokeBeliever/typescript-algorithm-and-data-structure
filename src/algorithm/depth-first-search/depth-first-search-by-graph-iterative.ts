@@ -2,7 +2,7 @@ import { StackByArray } from '@/data-structure/stack';
 import type {
   GraphInterface,
   GraphTraverseCallbackType,
-} from '@/data-structure/types/graph';
+} from '@/data-structure/graph/graph.types';
 
 /**
  * 图的深度优先搜索 (迭代)

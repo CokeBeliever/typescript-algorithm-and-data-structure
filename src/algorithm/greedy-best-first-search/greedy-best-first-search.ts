@@ -1,5 +1,5 @@
 import { MinPriorityQueue } from '@/data-structure/priority-queue';
-import type { GraphInterface } from '@/data-structure/types/graph';
+import type { GraphInterface } from '@/data-structure/graph/graph.types';
 
 /**
  * 启发函数类型

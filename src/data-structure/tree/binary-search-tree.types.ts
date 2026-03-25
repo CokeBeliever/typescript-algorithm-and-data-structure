@@ -1,5 +1,5 @@
-import type { BinarySearchTreeNodeInterface } from '@/data-structure/types/tree/binary-search-tree-node';
-import type { BinaryTreeOrderCallbackType } from '@/data-structure/types/tree/binary-tree-node';
+import type { BinarySearchTreeNodeInterface } from '@/data-structure/tree/binary-search-tree-node.types';
+import type { BinaryTreeOrderCallbackType } from '@/data-structure/tree/binary-tree-node.types';
 
 /**
  * 二叉查找树接口

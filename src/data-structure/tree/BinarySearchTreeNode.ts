@@ -1,4 +1,4 @@
-import type { BinarySearchTreeNodeInterface } from '@/data-structure/types/tree/binary-search-tree-node';
+import type { BinarySearchTreeNodeInterface } from '@/data-structure/tree/binary-search-tree-node.types';
 import Comparator from '@/utils/Comparator';
 import BinaryTreeNode from '@/data-structure/tree/BinaryTreeNode';
 

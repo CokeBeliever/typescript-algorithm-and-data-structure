@@ -1,15 +1,4 @@
 /**
- * 优先队列结点接口
- */
-export interface PriorityQueueNodeInterface<Element> {
-  /** 数据元素 */
-  value: Element;
-
-  /** 优先级 */
-  priority: number;
-}
-
-/**
  * 优先队列接口
  */
 export interface PriorityQueueInterface<Element> extends Iterable<Element> {

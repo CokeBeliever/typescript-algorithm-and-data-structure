@@ -1,6 +1,6 @@
-import type { BinarySearchTreeInterface } from '@/data-structure/types/tree/binary-search-tree';
-import type { BinarySearchTreeNodeInterface } from '@/data-structure/types/tree/binary-search-tree-node';
-import type { BinaryTreeOrderCallbackType } from '@/data-structure/types/tree/binary-tree-node';
+import type { BinarySearchTreeInterface } from '@/data-structure/tree/binary-search-tree.types';
+import type { BinarySearchTreeNodeInterface } from '@/data-structure/tree/binary-search-tree-node.types';
+import type { BinaryTreeOrderCallbackType } from '@/data-structure/tree/binary-tree-node.types';
 import Comparator from '@/utils/Comparator';
 import BinarySearchTreeNode from '@/data-structure/tree/BinarySearchTreeNode';
 

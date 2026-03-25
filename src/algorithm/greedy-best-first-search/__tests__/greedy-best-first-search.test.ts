@@ -7,8 +7,15 @@ import {
   getPathFromGreedyBestFirstSearchResult as moduleGetPathFromGreedyBestFirstSearchResult,
   greedyBestFirstSearch as moduleGreedyBestFirstSearch,
 } from '@/algorithm/greedy-best-first-search';
+import { createEuclideanDistanceHeuristic } from '@/algorithm/heuristic';
 import getPathFromGreedyBestFirstSearchResult from '@/algorithm/greedy-best-first-search/get-path-from-greedy-best-first-search-result';
 import greedyBestFirstSearch from '@/algorithm/greedy-best-first-search/greedy-best-first-search';
+
+interface PointNodeInterface {
+  name: string;
+  x: number;
+  y: number;
+}
 
 describe('greedyBestFirstSearch', () => {
   it('exports: greedy-best-first-search 模块和根入口导出 greedyBestFirstSearch 与 getPathFromGreedyBestFirstSearchResult', () => {
@@ -94,6 +101,39 @@ describe('greedyBestFirstSearch', () => {
     expect(result.visitedOrder.join(',')).toBe('A,B,C');
     expect(result.previous.get('A')).toBeNull();
     expect(getPathFromGreedyBestFirstSearchResult(result)).toEqual([]);
+  });
+
+  it('可直接使用 heuristic 模块导出的启发式函数', () => {
+    const start = { name: 'A', x: 0, y: 0 };
+    const left = { name: 'B', x: 1, y: 1 };
+    const right = { name: 'C', x: 1, y: 0 };
+    const target = { name: 'D', x: 2, y: 0 };
+    const graph = new Graph<PointNodeInterface>(true);
+    const heuristic = createEuclideanDistanceHeuristic(
+      (point: PointNodeInterface) => ({
+        x: point.x,
+        y: point.y,
+      })
+    );
+
+    graph
+      .addEdge(start, left)
+      .addEdge(start, right)
+      .addEdge(left, target)
+      .addEdge(right, target);
+
+    const result = greedyBestFirstSearch(graph, start, target, heuristic);
+
+    expect(result.found).toBeTruthy();
+    expect(result.visitedOrder).toEqual([start, right, target]);
+    expect(result.heuristicValues.get(start)).toBe(2);
+    expect(result.heuristicValues.get(right)).toBe(1);
+    expect(result.heuristicValues.get(target)).toBe(0);
+    expect(getPathFromGreedyBestFirstSearchResult(result)).toEqual([
+      start,
+      right,
+      target,
+    ]);
   });
 
   it('起点或目标点不存在时返回空结果', () => {

@@ -7,8 +7,15 @@ import {
   aStar as moduleAStar,
   getPathFromAStarResult as moduleGetPathFromAStarResult,
 } from '@/algorithm/a-star';
+import { createManhattanDistanceHeuristic } from '@/algorithm/heuristic';
 import aStar from '@/algorithm/a-star/a-star';
 import getPathFromAStarResult from '@/algorithm/a-star/get-path-from-a-star-result';
+
+interface PointNodeInterface {
+  name: string;
+  x: number;
+  y: number;
+}
 
 describe('aStar', () => {
   it('exports: a-star 模块和根入口导出 aStar 与 getPathFromAStarResult', () => {
@@ -100,6 +107,34 @@ describe('aStar', () => {
     expect(result.distances.get('Z')).toBe(3);
     expect(result.previous.get('Z')).toBe('B');
     expect(getPathFromAStarResult(result).join(',')).toBe('A,B,Z');
+  });
+
+  it('可直接使用 heuristic 模块导出的启发式函数', () => {
+    const start = { name: 'A', x: 0, y: 0 };
+    const middle = { name: 'B', x: 1, y: 0 };
+    const target = { name: 'C', x: 2, y: 0 };
+    const graph = new WeightedGraph<PointNodeInterface>(true);
+    const heuristic = createManhattanDistanceHeuristic(
+      (point: PointNodeInterface) => ({
+        x: point.x,
+        y: point.y,
+      })
+    );
+
+    graph
+      .addEdge(start, middle, 1)
+      .addEdge(start, target, 5)
+      .addEdge(middle, target, 1);
+
+    const result = aStar(graph, start, target, heuristic);
+
+    expect(result.found).toBeTruthy();
+    expect(result.visitedOrder).toEqual([start, middle, target]);
+    expect(result.distances.get(target)).toBe(2);
+    expect(result.heuristicValues.get(start)).toBe(2);
+    expect(result.heuristicValues.get(middle)).toBe(1);
+    expect(result.heuristicValues.get(target)).toBe(0);
+    expect(getPathFromAStarResult(result)).toEqual([start, middle, target]);
   });
 
   it('目标不可达时返回未找到结果和空路径', () => {

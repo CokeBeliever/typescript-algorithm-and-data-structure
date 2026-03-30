@@ -158,4 +158,3 @@ describe('LinkedList', () => {
     expect(linkedList.toString()).toBe('1,2,3');
   });
 });
-

@@ -50,15 +50,10 @@ describe('greedyBestFirstSearch', () => {
       .addEdge('E', 'G')
       .addEdge('F', 'G');
 
-    const result = greedyBestFirstSearch(
-      graph,
-      'A',
-      'G',
-      (current, target) => {
-        expect(target).toBe('G');
-        return heuristicMap.get(current) as number;
-      }
-    );
+    const result = greedyBestFirstSearch(graph, 'A', 'G', (current, target) => {
+      expect(target).toBe('G');
+      return heuristicMap.get(current) as number;
+    });
 
     expect(result.found).toBeTruthy();
     expect(result.start).toBe('A');
@@ -82,20 +77,15 @@ describe('greedyBestFirstSearch', () => {
 
     graph.addEdge('A', 'B').addEdge('B', 'C').addVertex('Z');
 
-    const result = greedyBestFirstSearch(
-      graph,
-      'A',
-      'Z',
-      (current) => {
-        const values = new Map<string, number>([
-          ['A', 3],
-          ['B', 2],
-          ['C', 1],
-          ['Z', 0],
-        ]);
-        return values.get(current) as number;
-      }
-    );
+    const result = greedyBestFirstSearch(graph, 'A', 'Z', (current) => {
+      const values = new Map<string, number>([
+        ['A', 3],
+        ['B', 2],
+        ['C', 1],
+        ['Z', 0],
+      ]);
+      return values.get(current) as number;
+    });
 
     expect(result.found).toBeFalsy();
     expect(result.visitedOrder.join(',')).toBe('A,B,C');
@@ -159,14 +149,10 @@ describe('greedyBestFirstSearch', () => {
       greedyBestFirstSearch(graph, 'A', 'C', (current) =>
         current === 'B' ? -1 : 0
       )
-    ).toThrow(
-      'greedyBestFirstSearch: heuristic 返回值必须是非负有限数字'
-    );
+    ).toThrow('greedyBestFirstSearch: heuristic 返回值必须是非负有限数字');
 
     expect(() =>
       greedyBestFirstSearch(graph, 'A', 'C', () => Number.NaN)
-    ).toThrow(
-      'greedyBestFirstSearch: heuristic 返回值必须是非负有限数字'
-    );
+    ).toThrow('greedyBestFirstSearch: heuristic 返回值必须是非负有限数字');
   });
 });

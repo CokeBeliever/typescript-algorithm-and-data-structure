@@ -10,16 +10,9 @@
     "strict": true,
     "noImplicitAny": false,
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
 }

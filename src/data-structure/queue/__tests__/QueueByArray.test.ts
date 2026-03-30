@@ -87,4 +87,3 @@ describe('Queue', () => {
     expect(queueIterator.next().value).toBe(3);
   });
 });
-

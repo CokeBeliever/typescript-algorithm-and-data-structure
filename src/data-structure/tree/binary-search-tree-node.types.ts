@@ -4,7 +4,10 @@ import type { BinaryTreeNodeInterface } from '@/data-structure/tree/binary-tree-
  * 二叉查找树结点接口
  */
 export interface BinarySearchTreeNodeInterface<Element>
-  extends BinaryTreeNodeInterface<BinarySearchTreeNodeInterface<Element>, Element> {
+  extends BinaryTreeNodeInterface<
+    BinarySearchTreeNodeInterface<Element>,
+    Element
+  > {
   /**
    * 插入数据元素
    * @param el 数据元素

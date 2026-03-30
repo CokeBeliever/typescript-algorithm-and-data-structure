@@ -23,14 +23,20 @@ export interface HeapInterface<Element> extends Iterable<Element> {
    * @param item 数据元素
    * @param comparatorFunction 查找时使用的比较函数
    */
-  remove(item: Element, comparatorFunction?: (a: Element, b: Element) => number): this;
+  remove(
+    item: Element,
+    comparatorFunction?: (a: Element, b: Element) => number
+  ): this;
 
   /**
    * 查找指定元素的索引
    * @param item 数据元素
    * @param comparatorFunction 查找时使用的比较函数
    */
-  find(item: Element, comparatorFunction?: (a: Element, b: Element) => number): number[];
+  find(
+    item: Element,
+    comparatorFunction?: (a: Element, b: Element) => number
+  ): number[];
 
   /**
    * 堆转字符串

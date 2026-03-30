@@ -62,10 +62,7 @@ describe('heuristic', () => {
     const heuristic = createManhattanDistanceHeuristic(getCoordinate);
 
     expect(
-      heuristic(
-        { name: 'A', x: 1, y: 2 },
-        { name: 'B', x: 4, y: 6 }
-      )
+      heuristic({ name: 'A', x: 1, y: 2 }, { name: 'B', x: 4, y: 6 })
     ).toBe(7);
   });
 
@@ -80,10 +77,7 @@ describe('heuristic', () => {
     ).toBe(11);
 
     expect(
-      heuristic(
-        { name: 'A', x: 1, y: 2 },
-        { name: 'B', x: 4, y: 6, z: 0 }
-      )
+      heuristic({ name: 'A', x: 1, y: 2 }, { name: 'B', x: 4, y: 6, z: 0 })
     ).toBe(7);
   });
 
@@ -91,10 +85,7 @@ describe('heuristic', () => {
     const heuristic = createEuclideanDistanceHeuristic(getCoordinate);
 
     expect(
-      heuristic(
-        { name: 'A', x: 0, y: 0 },
-        { name: 'B', x: 3, y: 4 }
-      )
+      heuristic({ name: 'A', x: 0, y: 0 }, { name: 'B', x: 3, y: 4 })
     ).toBe(5);
   });
 
@@ -113,10 +104,7 @@ describe('heuristic', () => {
     const heuristic = createChebyshevDistanceHeuristic(getCoordinate);
 
     expect(
-      heuristic(
-        { name: 'A', x: 2, y: 1 },
-        { name: 'B', x: 7, y: 4 }
-      )
+      heuristic({ name: 'A', x: 2, y: 1 }, { name: 'B', x: 7, y: 4 })
     ).toBe(5);
   });
 
@@ -135,10 +123,7 @@ describe('heuristic', () => {
     const heuristic = createOctileDistanceHeuristic2D(getCoordinate);
 
     expect(
-      heuristic(
-        { name: 'A', x: 0, y: 0 },
-        { name: 'B', x: 3, y: 1 }
-      )
+      heuristic({ name: 'A', x: 0, y: 0 }, { name: 'B', x: 3, y: 1 })
     ).toBeCloseTo(1 * Math.SQRT2 + 2, 10);
   });
 
@@ -171,7 +156,7 @@ describe('heuristic', () => {
         ({
           x: Number.NaN,
           y: 0,
-        }) as PointNodeInterface
+        } as PointNodeInterface)
     );
 
     expect(() =>
@@ -187,7 +172,7 @@ describe('heuristic', () => {
           x: 0,
           y: 0,
           z: Number.POSITIVE_INFINITY,
-        }) as PointNodeInterface
+        } as PointNodeInterface)
     );
 
     expect(() =>

@@ -75,4 +75,3 @@ describe('Stack', () => {
     expect(stack.pop()!.value).toBe('test1');
   });
 });
-

@@ -97,7 +97,9 @@ export default class WeightedGraph<Element>
   }
 
   private _addNeighbor(vertex: Element, neighbor: Element, weight: number) {
-    const neighbors = this._adjacencyList.get(vertex) as WeightedGraphEdgeInterface<Element>[];
+    const neighbors = this._adjacencyList.get(
+      vertex
+    ) as WeightedGraphEdgeInterface<Element>[];
     const existedNeighbor = neighbors.find((edge) => edge.vertex === neighbor);
 
     if (existedNeighbor) {

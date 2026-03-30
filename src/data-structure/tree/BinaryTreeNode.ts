@@ -10,8 +10,7 @@ import type {
 abstract class BinaryTreeNodeByBinaryLinkedList<
   T extends BinaryTreeNodeByBinaryLinkedList<T, Element>,
   Element
->
-{
+> {
   data: Element;
   left: T | null;
   right: T | null;
@@ -29,8 +28,7 @@ abstract class BinaryTreeNodeByBinaryLinkedList<
 abstract class BinaryTreeNodeByTridentLinkedList<
   T extends BinaryTreeNodeByTridentLinkedList<T, Element>,
   Element
->
-{
+> {
   data: Element;
   left: T | null;
   right: T | null;

@@ -2,7 +2,7 @@ import { getHeuristicCoordinate } from '@/algorithm/heuristic/coordinate-utils';
 import type {
   CoordinateHeuristicFunctionType,
   HeuristicCoordinateGetterType,
-} from '@/algorithm/heuristic/heuristic-types';
+} from '@/algorithm/heuristic/heuristic.types';
 
 /**
  * 创建曼哈顿距离启发函数

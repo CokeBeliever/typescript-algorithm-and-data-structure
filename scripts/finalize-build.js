@@ -33,7 +33,9 @@ function rewriteAliases(content, fileDir, isEsmOutput) {
     const absoluteTarget = isEsmOutput
       ? resolveEsmTarget(target)
       : path.join(distRoot, target);
-    let relativeTarget = path.relative(fileDir, absoluteTarget).replace(/\\/g, '/');
+    let relativeTarget = path
+      .relative(fileDir, absoluteTarget)
+      .replace(/\\/g, '/');
 
     if (!relativeTarget.startsWith('.')) {
       relativeTarget = './' + relativeTarget;

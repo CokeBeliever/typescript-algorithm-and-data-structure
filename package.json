@@ -2,6 +2,15 @@
   "name": "typescript-algorithm-and-data-structure",
   "version": "1.0.0",
   "description": "Data structures and basic algorithms implemented in TypeScript.",
+  "keywords": [
+    "typescript",
+    "algorithm",
+    "data-structure",
+    "graph",
+    "tree",
+    "heap",
+    "priority-queue"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -93,16 +102,23 @@
     "./package.json": "./package.json"
   },
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "npm run format:check && npm run typecheck",
     "build": "node scripts/clean-build-directories.js && tsc -p tsconfig.build.json && tsc -p tsconfig.build.esm.json && node scripts/finalize-build.js",
     "test": "jest",
-    "prepublishOnly": "npm run build"
+    "test:coverage": "jest --coverage --runInBand",
+    "pack:dry-run": "npm pack --dry-run",
+    "verify": "npm run lint && npm run test:coverage && npm run build && npm run pack:dry-run",
+    "prepublishOnly": "npm run verify"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CokeBeliever/typescript-algorithm-and-data-structure.git"
   },
   "author": "CokeBeliever",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CokeBeliever/typescript-algorithm-and-data-structure/issues"
   },

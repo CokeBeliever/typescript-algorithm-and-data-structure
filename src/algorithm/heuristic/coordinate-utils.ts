@@ -1,7 +1,7 @@
 import type {
   HeuristicCoordinateGetterType,
   HeuristicCoordinateInterface,
-} from '@/algorithm/heuristic/heuristic-types';
+} from '@/algorithm/heuristic/heuristic.types';
 
 export function getHeuristicCoordinate<Element>(
   element: Element,

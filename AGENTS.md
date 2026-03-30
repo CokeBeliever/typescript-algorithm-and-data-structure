@@ -43,14 +43,14 @@
 
 ## 5. 命名速查表
 
-| 场景 | 文件名 | 导出名 | 示例 |
-| --- | --- | --- | --- |
-| 类、节点、面向对象实现 | `PascalCase.ts` | `PascalCase` | `BinarySearchTree.ts` -> `BinarySearchTree` |
-| 普通函数、算法、辅助函数 | `kebab-case.ts` | `camelCase` | `get-path-from-dijkstra-result.ts` -> `getPathFromDijkstraResult` |
-| 目录入口 | `index.ts` | 按实际导出风格 | `queue/index.ts` |
-| 模块公共类型/接口 | `kebab-case.types.ts` | `PascalCase` 类型名 | `binary-search-tree.types.ts` |
-| 类测试 | `PascalCase.test.ts` | 无 | `QueueByArray.test.ts` |
-| 函数测试 | `kebab-case.test.ts` | 无 | `dijkstra.test.ts` |
+| 场景                     | 文件名                | 导出名              | 示例                                                              |
+| ------------------------ | --------------------- | ------------------- | ----------------------------------------------------------------- |
+| 类、节点、面向对象实现   | `PascalCase.ts`       | `PascalCase`        | `BinarySearchTree.ts` -> `BinarySearchTree`                       |
+| 普通函数、算法、辅助函数 | `kebab-case.ts`       | `camelCase`         | `get-path-from-dijkstra-result.ts` -> `getPathFromDijkstraResult` |
+| 目录入口                 | `index.ts`            | 按实际导出风格      | `queue/index.ts`                                                  |
+| 模块公共类型/接口        | `kebab-case.types.ts` | `PascalCase` 类型名 | `binary-search-tree.types.ts`                                     |
+| 类测试                   | `PascalCase.test.ts`  | 无                  | `QueueByArray.test.ts`                                            |
+| 函数测试                 | `kebab-case.test.ts`  | 无                  | `dijkstra.test.ts`                                                |
 
 ## 6. 命名与导出规则
 

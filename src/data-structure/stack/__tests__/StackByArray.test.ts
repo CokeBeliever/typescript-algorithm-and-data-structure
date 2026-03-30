@@ -74,4 +74,16 @@ describe('Stack', () => {
     expect(stack.pop()!.value).toBe('test2');
     expect(stack.pop()!.value).toBe('test1');
   });
+
+  it('[Symbol.iterator](): 空栈和非空栈都可迭代', () => {
+    const emptyStack = new StackByArray<number>();
+    expect(Array.from(emptyStack)).toEqual([]);
+
+    const stack = new StackByArray<number>();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    expect(Array.from(stack)).toEqual([3, 2, 1]);
+  });
 });

@@ -262,6 +262,7 @@ npm run verify
 
 - 协作规范、命名规则与提交流程见 [AGENTS.md](./AGENTS.md)
 - 贡献入口与提交流程见 [CONTRIBUTING.md](./CONTRIBUTING.md)
+- 版本变更记录见 [CHANGELOG.md](./CHANGELOG.md)
 - 当前许可证见 [LICENSE](./LICENSE)
 
 ## 项目结构

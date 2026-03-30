@@ -110,8 +110,32 @@ function rewriteDistDeclarationsAndCjs(currentDir) {
   }
 }
 
+function removeTypeRuntimeArtifacts(currentDir) {
+  if (!fs.existsSync(currentDir)) {
+    return;
+  }
+
+  for (const entry of fs.readdirSync(currentDir, { withFileTypes: true })) {
+    const entryPath = path.join(currentDir, entry.name);
+
+    if (entry.isDirectory()) {
+      removeTypeRuntimeArtifacts(entryPath);
+      continue;
+    }
+
+    if (!entry.isFile()) {
+      continue;
+    }
+
+    if (/\.types\.(js|mjs)$/.test(entry.name)) {
+      fs.rmSync(entryPath, { force: true });
+    }
+  }
+}
+
 removeDirectory(legacyEsmRoot);
 copyAndRewriteEsmDirectory(esmBuildRoot);
 rewriteDistDeclarationsAndCjs(distRoot);
+removeTypeRuntimeArtifacts(distRoot);
 removeDirectory(esmBuildRoot);
 removeDirectory(path.join(projectRoot, '.build'));

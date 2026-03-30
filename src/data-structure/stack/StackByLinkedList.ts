@@ -10,30 +10,30 @@ export default class StackByLinkedList<Element>
   /** 元素容器 */
   private _container: LinkedList<Element> = new LinkedList();
 
-  public push(el: Element) {
+  public push(el: Element): void {
     this._container.insertHead(el);
   }
 
-  public pop() {
+  public pop(): Element | null {
     if (this.isEmpty()) return null;
     return this._container.deleteHead()!.data;
   }
 
-  public peek() {
+  public peek(): Element | null {
     if (this.isEmpty()) return null;
     return this._container.getHead()!.data;
   }
 
-  public toString() {
+  public toString(): string {
     return this._container.toString();
   }
 
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this._container.isEmpty();
   }
 
-  public *[Symbol.iterator]() {
-    for (let node of this._container) {
+  public *[Symbol.iterator](): IterableIterator<Element> {
+    for (const node of this._container) {
       yield node.data;
     }
   }

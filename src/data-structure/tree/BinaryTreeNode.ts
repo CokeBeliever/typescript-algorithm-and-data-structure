@@ -23,31 +23,6 @@ abstract class BinaryTreeNodeByBinaryLinkedList<
 }
 
 /**
- * 二叉树结点 (三叉链表实现)
- */
-abstract class BinaryTreeNodeByTridentLinkedList<
-  T extends BinaryTreeNodeByTridentLinkedList<T, Element>,
-  Element
-> {
-  data: Element;
-  left: T | null;
-  right: T | null;
-  parent: T | null;
-
-  constructor(
-    data: Element,
-    left: T | null = null,
-    right: T | null = null,
-    parent: T | null = null
-  ) {
-    this.data = data;
-    this.left = left;
-    this.right = right;
-    this.parent = parent;
-  }
-}
-
-/**
  * 二叉树结点
  */
 export default abstract class BinaryTreeNode<
@@ -57,27 +32,27 @@ export default abstract class BinaryTreeNode<
   extends BinaryTreeNodeByBinaryLinkedList<T, Element>
   implements BinaryTreeNodeInterface<T, Element>
 {
-  public preOrder(cb: BinaryTreeOrderCallbackType<T>) {
-    cb(this as any);
+  public preOrder(cb: BinaryTreeOrderCallbackType<T>): void {
+    cb(this as unknown as T);
     if (this.left) this.left.preOrder(cb);
     if (this.right) this.right.preOrder(cb);
   }
 
-  public inOrder(cb: BinaryTreeOrderCallbackType<T>) {
+  public inOrder(cb: BinaryTreeOrderCallbackType<T>): void {
     if (this.left) this.left.inOrder(cb);
-    cb(this as any);
+    cb(this as unknown as T);
     if (this.right) this.right.inOrder(cb);
   }
 
-  public postOrder(cb: BinaryTreeOrderCallbackType<T>) {
+  public postOrder(cb: BinaryTreeOrderCallbackType<T>): void {
     if (this.left) this.left.postOrder(cb);
     if (this.right) this.right.postOrder(cb);
-    cb(this as any);
+    cb(this as unknown as T);
   }
 
-  public levelOrder(cb: BinaryTreeOrderCallbackType<T>) {
+  public levelOrder(cb: BinaryTreeOrderCallbackType<T>): void {
     const queue = new QueueByLinkedList<T>();
-    queue.enqueue(this as any);
+    queue.enqueue(this as unknown as T);
 
     while (!queue.isEmpty()) {
       const node = queue.dequeue() as T;
@@ -87,7 +62,7 @@ export default abstract class BinaryTreeNode<
     }
   }
 
-  public toString() {
+  public toString(): string {
     const list: string[] = [];
 
     for (const node of this) {
@@ -97,7 +72,7 @@ export default abstract class BinaryTreeNode<
     return list.join(',');
   }
 
-  public *[Symbol.iterator]() {
+  public *[Symbol.iterator](): IterableIterator<T> {
     const list: T[] = [];
 
     this.preOrder((node) => list.push(node));

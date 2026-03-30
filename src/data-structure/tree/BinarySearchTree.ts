@@ -17,7 +17,7 @@ export default class BinarySearchTree<Element>
     this._comparator = new Comparator(comparatorFunction);
   }
 
-  public insert(el: Element) {
+  public insert(el: Element): void {
     if (this.isEmpty()) {
       this._root = new BinarySearchTreeNode(
         el,
@@ -30,7 +30,7 @@ export default class BinarySearchTree<Element>
     }
   }
 
-  public remove(el: Element) {
+  public remove(el: Element): BinarySearchTreeNode<Element> | null {
     if (this.isEmpty()) {
       throw new Error('remove(): 二叉查找树是空树');
     }
@@ -77,7 +77,7 @@ export default class BinarySearchTree<Element>
     return deletedNode;
   }
 
-  public contains(el: Element) {
+  public contains(el: Element): boolean {
     if (this.isEmpty()) {
       return false;
     } else {
@@ -85,7 +85,7 @@ export default class BinarySearchTree<Element>
     }
   }
 
-  public search(el: Element) {
+  public search(el: Element): BinarySearchTreeNode<Element> | null {
     if (this.isEmpty()) {
       return null;
     } else {
@@ -93,7 +93,7 @@ export default class BinarySearchTree<Element>
     }
   }
 
-  public min() {
+  public min(): BinarySearchTreeNode<Element> | null {
     if (this.isEmpty()) {
       return null;
     } else {
@@ -101,7 +101,7 @@ export default class BinarySearchTree<Element>
     }
   }
 
-  public max() {
+  public max(): BinarySearchTreeNode<Element> | null {
     if (this.isEmpty()) {
       return null;
     } else {
@@ -109,7 +109,7 @@ export default class BinarySearchTree<Element>
     }
   }
 
-  public toString() {
+  public toString(): string {
     if (this.isEmpty()) {
       return '';
     } else {
@@ -117,13 +117,13 @@ export default class BinarySearchTree<Element>
     }
   }
 
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this._root === null;
   }
 
   public preOrder(
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
-  ) {
+  ): void {
     if (!this.isEmpty()) {
       this._root!.preOrder(cb);
     }
@@ -131,7 +131,7 @@ export default class BinarySearchTree<Element>
 
   public inOrder(
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
-  ) {
+  ): void {
     if (!this.isEmpty()) {
       this._root!.inOrder(cb);
     }
@@ -139,7 +139,7 @@ export default class BinarySearchTree<Element>
 
   public postOrder(
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
-  ) {
+  ): void {
     if (!this.isEmpty()) {
       this._root!.postOrder(cb);
     }
@@ -147,16 +147,16 @@ export default class BinarySearchTree<Element>
 
   public levelOrder(
     cb: BinaryTreeOrderCallbackType<BinarySearchTreeNodeInterface<Element>>
-  ) {
+  ): void {
     if (!this.isEmpty()) {
       this._root!.levelOrder(cb);
     }
   }
 
-  [Symbol.iterator]() {
+  public [Symbol.iterator](): Iterator<BinarySearchTreeNode<Element>> {
     if (this.isEmpty()) {
       const iterator: Iterator<BinarySearchTreeNode<Element>> = {
-        next() {
+        next(): IteratorResult<BinarySearchTreeNode<Element>> {
           return { done: true, value: undefined };
         },
       };
